@@ -1,0 +1,2949 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A structured, visual, self-paced learning journey through classical homeopathy.">
+  <title>Homeopathy Academy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --primary: #2E7D5B;
+      --secondary: #7B5EA7;
+      --accent: #E8A838;
+      --danger: #C0392B;
+      --light-bg: #F5F7F2;
+      --card-bg: #FFFFFF;
+      --text: #1A2B20;
+      --muted: #6B7280;
+      --line: rgba(46, 125, 91, 0.18);
+      --soft-primary: rgba(46, 125, 91, 0.12);
+      --soft-secondary: rgba(123, 94, 167, 0.12);
+      --soft-accent: rgba(232, 168, 56, 0.16);
+      --nav-bg: rgba(245, 247, 242, 0.94);
+      --shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+      --shadow-strong: 0 16px 48px rgba(26, 43, 32, 0.14);
+    }
+
+    [data-theme="dark"] {
+      --light-bg: #1A2B20;
+      --card-bg: #243330;
+      --text: #E8F0E8;
+      --muted: #9CA3AF;
+      --line: rgba(232, 240, 232, 0.16);
+      --soft-primary: rgba(46, 125, 91, 0.24);
+      --soft-secondary: rgba(123, 94, 167, 0.26);
+      --soft-accent: rgba(232, 168, 56, 0.20);
+      --nav-bg: rgba(26, 43, 32, 0.94);
+      --shadow: 0 2px 18px rgba(0, 0, 0, 0.24);
+      --shadow-strong: 0 18px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 92px;
+    }
+
+    body {
+      background: var(--light-bg);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      line-height: 1.65;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .display-font {
+      color: var(--text);
+      font-family: "Playfair Display", serif;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: var(--primary);
+    }
+
+    .navbar {
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .navbar-brand,
+    .navbar .nav-link,
+    .navbar .btn {
+      color: var(--text);
+    }
+
+    .navbar .nav-link {
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link:focus {
+      color: var(--primary);
+    }
+
+    .logo-mark {
+      align-items: center;
+      background: var(--soft-primary);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: inline-flex;
+      height: 38px;
+      justify-content: center;
+      width: 38px;
+    }
+
+    .progress-badge {
+      background: var(--soft-accent);
+      border: 1px solid rgba(232, 168, 56, 0.35);
+      border-radius: 999px;
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 0.42rem 0.72rem;
+      white-space: nowrap;
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 800;
+      min-width: 94px;
+    }
+
+    .hero {
+      background:
+        linear-gradient(115deg, rgba(46, 125, 91, 0.18), transparent 48%),
+        linear-gradient(290deg, rgba(123, 94, 167, 0.18), transparent 52%),
+        var(--light-bg);
+      min-height: calc(100vh - 76px);
+      overflow: hidden;
+      padding: 6rem 0 4rem;
+      position: relative;
+    }
+
+    .hero::before {
+      background:
+        repeating-linear-gradient(90deg, transparent 0 24px, rgba(46, 125, 91, 0.06) 24px 25px),
+        repeating-linear-gradient(0deg, transparent 0 24px, rgba(123, 94, 167, 0.055) 24px 25px);
+      content: "";
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-kicker {
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+      color: var(--primary);
+      display: inline-flex;
+      font-size: 0.82rem;
+      font-weight: 900;
+      gap: 0.5rem;
+      letter-spacing: 0.08em;
+      padding: 0.5rem 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.75rem, 6vw, 5.8rem);
+      line-height: 0.96;
+      margin-top: 1.5rem;
+      max-width: 980px;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      max-width: 760px;
+    }
+
+    .hero-actions .btn {
+      border-radius: 999px;
+      font-weight: 900;
+      padding: 0.82rem 1.1rem;
+    }
+
+    .btn-primary-academy {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary-academy:hover,
+    .btn-primary-academy:focus {
+      background: #25684c;
+      border-color: #25684c;
+      color: #fff;
+    }
+
+    .btn-outline-academy {
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .btn-outline-academy:hover,
+    .btn-outline-academy:focus {
+      background: var(--soft-primary);
+      border-color: var(--primary);
+      color: var(--text);
+    }
+
+    .hero-visual {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow-strong);
+      margin-top: 2rem;
+      overflow: hidden;
+    }
+
+    .visual-top {
+      align-items: stretch;
+      background: linear-gradient(135deg, var(--card-bg), var(--soft-primary));
+      display: grid;
+      gap: 1px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .visual-cell {
+      background: rgba(255, 255, 255, 0.04);
+      min-height: 120px;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .visual-cell strong {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-size: 1.2rem;
+      line-height: 1.15;
+    }
+
+    .visual-cell span {
+      color: var(--muted);
+      display: block;
+      font-size: 0.84rem;
+      margin-top: 0.45rem;
+    }
+
+    .visual-icon {
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      bottom: 1rem;
+      color: var(--primary);
+      display: inline-flex;
+      font-size: 1.15rem;
+      height: 42px;
+      justify-content: center;
+      position: absolute;
+      right: 1rem;
+      width: 42px;
+    }
+
+    .roadmap-wrap {
+      background: var(--card-bg);
+      border-top: 1px solid var(--line);
+      padding: 1rem;
+    }
+
+    .roadmap {
+      display: grid;
+      gap: 0.75rem;
+      grid-auto-columns: minmax(132px, 1fr);
+      grid-auto-flow: column;
+      overflow-x: auto;
+      padding-bottom: 0.35rem;
+      scrollbar-width: thin;
+    }
+
+    .roadmap-step {
+      align-items: center;
+      background: var(--light-bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      min-height: 96px;
+      padding: 0.8rem 0.6rem;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .roadmap-step:hover,
+    .roadmap-step:focus {
+      background: var(--soft-primary);
+      border-color: var(--primary);
+      color: var(--text);
+      transform: translateY(-3px);
+    }
+
+    .roadmap-step i {
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .roadmap-step span {
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .roadmap-step strong {
+      font-size: 0.88rem;
+      line-height: 1.2;
+    }
+
+    .hero-progress {
+      background: rgba(46, 125, 91, 0.14);
+      height: 11px;
+    }
+
+    .hero-progress .progress-bar {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .source-note {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .educational-alert {
+      background: var(--soft-accent);
+      border: 1px solid rgba(232, 168, 56, 0.38);
+      border-radius: 12px;
+      color: var(--text);
+      padding: 1rem;
+    }
+
+    .module-section {
+      border-top: 1px solid var(--line);
+      padding: 5rem 0;
+    }
+
+    .section-alt {
+      background:
+        linear-gradient(180deg, rgba(46, 125, 91, 0.05), transparent 28%),
+        var(--light-bg);
+    }
+
+    .module-eyebrow {
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .module-heading {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      margin-bottom: 0.75rem;
+    }
+
+    .module-lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 850px;
+    }
+
+    .module-badge {
+      background: var(--soft-secondary);
+      border: 1px solid rgba(123, 94, 167, 0.28);
+      border-radius: 999px;
+      color: var(--text);
+      display: inline-flex;
+      font-size: 0.78rem;
+      font-weight: 900;
+      gap: 0.45rem;
+      padding: 0.38rem 0.7rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      color: var(--text);
+    }
+
+    .card-header {
+      background: var(--soft-primary);
+      border-bottom: 1px solid var(--line);
+      color: var(--text);
+      font-weight: 900;
+    }
+
+    .card h3,
+    .card h4,
+    .card h5 {
+      color: var(--text);
+    }
+
+    .text-muted,
+    .small-muted {
+      color: var(--muted) !important;
+    }
+
+    .icon-chip {
+      align-items: center;
+      background: var(--soft-primary);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--primary);
+      display: inline-flex;
+      height: 44px;
+      justify-content: center;
+      width: 44px;
+    }
+
+    .pill {
+      background: var(--soft-accent);
+      border: 1px solid rgba(232, 168, 56, 0.35);
+      border-radius: 999px;
+      display: inline-flex;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.25rem 0.55rem;
+    }
+
+    .source-list {
+      border-left: 3px solid var(--primary);
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-top: 1rem;
+      padding-left: 0.9rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+      grid-auto-columns: minmax(260px, 1fr);
+      grid-auto-flow: column;
+      overflow-x: auto;
+      padding: 0.25rem 0 1rem;
+      scrollbar-width: thin;
+    }
+
+    .timeline-item {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      min-height: 190px;
+      padding: 1.25rem;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      background: var(--primary);
+      border-radius: 999px;
+      content: "";
+      height: 14px;
+      left: 1.25rem;
+      position: absolute;
+      top: -7px;
+      width: 14px;
+    }
+
+    .timeline-year {
+      color: var(--secondary);
+      font-family: "Playfair Display", serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .quiz-option {
+      background: var(--light-bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: block;
+      margin-bottom: 0.55rem;
+      padding: 0.7rem 0.8rem;
+    }
+
+    .flip-card {
+      min-height: 260px;
+      perspective: 1200px;
+    }
+
+    .flip-card-inner {
+      height: 100%;
+      min-height: 260px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 600ms ease;
+    }
+
+    .flip-card:hover .flip-card-inner,
+    .flip-card:focus-within .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-face {
+      backface-visibility: hidden;
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      inset: 0;
+      justify-content: center;
+      padding: 1.5rem;
+      position: absolute;
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+    }
+
+    .dilution-ladder {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .dilution-step,
+    .making-step,
+    .hering-step {
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 52px 1fr;
+      padding: 1rem;
+    }
+
+    .step-number {
+      align-items: center;
+      background: var(--primary);
+      border-radius: 999px;
+      color: #fff;
+      display: inline-flex;
+      font-weight: 900;
+      height: 42px;
+      justify-content: center;
+      width: 42px;
+    }
+
+    .vital-diagram {
+      align-items: center;
+      display: grid;
+      gap: 0.8rem;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      text-align: center;
+    }
+
+    .vital-node {
+      background: var(--soft-primary);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      min-height: 108px;
+      padding: 1rem;
+    }
+
+    .chart-wrap {
+      height: 300px;
+      position: relative;
+    }
+
+    .accordion,
+    .accordion-item,
+    .accordion-button {
+      --bs-accordion-bg: var(--card-bg);
+      --bs-accordion-color: var(--text);
+      --bs-accordion-border-color: var(--line);
+      --bs-accordion-btn-color: var(--text);
+      --bs-accordion-active-bg: var(--soft-primary);
+      --bs-accordion-active-color: var(--text);
+    }
+
+    .accordion-button {
+      font-weight: 900;
+    }
+
+    .accordion-button:focus {
+      box-shadow: 0 0 0 0.2rem rgba(46, 125, 91, 0.18);
+    }
+
+    .table {
+      --bs-table-bg: var(--card-bg);
+      --bs-table-color: var(--text);
+      --bs-table-border-color: var(--line);
+      color: var(--text);
+    }
+
+    .table thead {
+      --bs-table-bg: var(--soft-primary);
+    }
+
+    .nav-pills .nav-link,
+    .nav-tabs .nav-link {
+      border-radius: 999px;
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .nav-pills .nav-link.active,
+    .nav-tabs .nav-link.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active,
+    .tab-pane.show.active {
+      display: block;
+    }
+
+    .accordion-collapse:not(.show) {
+      display: none;
+    }
+
+    .accordion-collapse.show {
+      display: block;
+    }
+
+    .repertory-rubric {
+      background: var(--light-bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    .grade-3 {
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .grade-2 {
+      color: var(--secondary);
+      font-style: italic;
+      font-weight: 800;
+    }
+
+    .grade-1 {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .formula-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .hierarchy-bar {
+      align-items: center;
+      border-radius: 12px;
+      color: #fff;
+      display: flex;
+      font-weight: 900;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      padding: 0.78rem 1rem;
+    }
+
+    .bar-pqrs { background: #2E7D5B; width: 100%; }
+    .bar-mental { background: #7B5EA7; width: 88%; }
+    .bar-general { background: #E8A838; width: 76%; color: #1A2B20; }
+    .bar-particular { background: #6B7280; width: 64%; }
+
+    .form-control,
+    .form-select {
+      background: var(--card-bg);
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      background: var(--card-bg);
+      border-color: var(--primary);
+      color: var(--text);
+      box-shadow: 0 0 0 0.2rem rgba(46, 125, 91, 0.16);
+    }
+
+    .case-summary {
+      background: var(--light-bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--text);
+      min-height: 160px;
+      padding: 1rem;
+      white-space: pre-wrap;
+    }
+
+    .miasm-card {
+      border-top: 5px solid var(--primary);
+      min-height: 100%;
+    }
+
+    .miasm-sycosis {
+      border-top-color: var(--secondary);
+    }
+
+    .miasm-syphilinum {
+      border-top-color: var(--danger);
+    }
+
+    .miasm-tubercular {
+      border-top-color: var(--accent);
+    }
+
+    .condition-table td,
+    .condition-table th {
+      vertical-align: top;
+    }
+
+    .danger-card {
+      border-color: rgba(192, 57, 43, 0.35);
+      border-left: 5px solid var(--danger);
+    }
+
+    .danger-card .icon-chip {
+      background: rgba(192, 57, 43, 0.12);
+      color: var(--danger);
+    }
+
+    .complete-panel {
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding: 1.15rem;
+    }
+
+    .complete-module.completed {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .floating-actions {
+      bottom: 1.25rem;
+      display: grid;
+      gap: 0.75rem;
+      position: fixed;
+      right: 1.25rem;
+      z-index: 1030;
+    }
+
+    .floating-actions .btn {
+      align-items: center;
+      border-radius: 999px;
+      box-shadow: var(--shadow-strong);
+      display: inline-flex;
+      font-weight: 900;
+      gap: 0.5rem;
+      justify-content: center;
+      min-height: 48px;
+      min-width: 48px;
+    }
+
+    #backToTop {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    #backToTop.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      color: var(--text);
+    }
+
+    .modal {
+      background: rgba(0, 0, 0, 0.48);
+    }
+
+    .modal.show {
+      display: block;
+    }
+
+    .modal-dialog {
+      margin: 3rem auto;
+      max-width: min(92vw, 860px);
+    }
+
+    .search-result {
+      background: var(--light-bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--text);
+      display: block;
+      padding: 0.85rem;
+      text-decoration: none;
+    }
+
+    .search-result:hover,
+    .search-result:focus {
+      background: var(--soft-primary);
+      color: var(--text);
+    }
+
+    .toast {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 650ms ease, transform 650ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .footer {
+      background: #132018;
+      color: #E8F0E8;
+      padding: 4rem 0 2rem;
+    }
+
+    .footer a {
+      color: #B9E0CA;
+      text-decoration: none;
+    }
+
+    .footer a:hover,
+    .footer a:focus {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .footer .disclaimer {
+      background: rgba(192, 57, 43, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 12px;
+      margin-top: 2rem;
+      padding: 1rem;
+    }
+
+    @media (max-width: 991.98px) {
+      .visual-top,
+      .formula-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .vital-diagram {
+        grid-template-columns: 1fr;
+      }
+
+      .vital-diagram .fa-arrow-right {
+        transform: rotate(90deg);
+      }
+    }
+
+    @media (max-width: 575.98px) {
+      .hero {
+        padding-top: 4.8rem;
+      }
+
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+
+      .visual-top,
+      .formula-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .complete-panel {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .complete-panel .btn {
+        width: 100%;
+      }
+
+      .floating-actions {
+        bottom: 0.9rem;
+        right: 0.9rem;
+      }
+    }
+
+    @media print {
+      .navbar,
+      .floating-actions,
+      .hero-actions,
+      .complete-panel,
+      .modal,
+      .toast-container,
+      #themeToggle {
+        display: none !important;
+      }
+
+      body {
+        background: #fff;
+        color: #000;
+      }
+
+      .module-section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .card,
+      .timeline-item {
+        box-shadow: none;
+      }
+
+      a::after {
+        content: " (" attr(href) ")";
+        font-size: 0.85em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-xl sticky-top">
+    <div class="container-fluid px-3 px-lg-4">
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="#top" aria-label="Homeopathy Academy home">
+        <span class="logo-mark" aria-hidden="true">🌿</span>
+        <span>Homeopathy Academy</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-xl-0 align-items-xl-center">
+          <li class="nav-item"><a class="nav-link" href="#module-1">History</a></li>
+          <li class="nav-item"><a class="nav-link" href="#module-2">Principles</a></li>
+          <li class="nav-item"><a class="nav-link" href="#module-3">Potencies</a></li>
+          <li class="nav-item"><a class="nav-link" href="#module-4">Materia Medica</a></li>
+          <li class="nav-item"><a class="nav-link" href="#module-5">Repertory</a></li>
+          <li class="nav-item"><a class="nav-link" href="#module-6">Case Taking</a></li>
+          <li class="nav-item"><a class="nav-link" href="#module-7">Miasms</a></li>
+          <li class="nav-item"><a class="nav-link" href="#module-8">Home Kit</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 ms-xl-3">
+          <button class="btn theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+            <i class="fa-solid fa-moon me-1" aria-hidden="true"></i><span>Dark</span>
+          </button>
+          <span class="progress-badge" id="progressBadge">0/7 modules complete</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-kicker animate__animated animate__fadeInUp">
+          <i class="fa-solid fa-seedling" aria-hidden="true"></i>
+          Classical Homeopathy Learning Path
+        </div>
+        <h1 class="animate__animated animate__fadeInUp animate__delay-1s">Learn Homeopathy — From First Principles to Home Practice</h1>
+        <p class="hero-subtitle mt-4 animate__animated animate__fadeInUp animate__delay-1s">
+          A structured, visual, self-paced learning journey through classical homeopathy, from history and philosophy to practical self-help.
+        </p>
+        <div class="hero-actions d-flex flex-wrap gap-3 mt-4 animate__animated animate__fadeInUp animate__delay-2s">
+          <a class="btn btn-primary-academy" href="#module-1">Start Learning <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a>
+          <a class="btn btn-outline-academy" href="#learning-path">View Learning Path</a>
+        </div>
+
+        <div class="row g-4 align-items-stretch mt-3">
+          <div class="col-lg-8">
+            <div class="hero-visual" id="learning-path" role="region" aria-label="Learning path roadmap">
+              <div class="visual-top">
+                <div class="visual-cell">
+                  <strong>History</strong>
+                  <span>Hahnemann, Organon, classical roots</span>
+                  <span class="visual-icon"><i class="fa-solid fa-scroll" aria-hidden="true"></i></span>
+                </div>
+                <div class="visual-cell">
+                  <strong>Principles</strong>
+                  <span>Similars, vital force, provings</span>
+                  <span class="visual-icon"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></span>
+                </div>
+                <div class="visual-cell">
+                  <strong>Practice</strong>
+                  <span>Potency, repertory, case taking</span>
+                  <span class="visual-icon"><i class="fa-solid fa-notes-medical" aria-hidden="true"></i></span>
+                </div>
+                <div class="visual-cell">
+                  <strong>Home Kit</strong>
+                  <span>Acute references, storage, safety</span>
+                  <span class="visual-icon"><i class="fa-solid fa-kit-medical" aria-hidden="true"></i></span>
+                </div>
+              </div>
+              <div class="roadmap-wrap">
+                <div class="d-flex justify-content-between gap-3 align-items-center mb-2">
+                  <strong>7-phase curriculum</strong>
+                  <small class="small-muted" id="heroProgressText">0% complete</small>
+                </div>
+                <div class="progress hero-progress mb-3" role="progressbar" aria-label="Learning progress" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar" id="heroProgressBar" style="width: 0%"></div>
+                </div>
+                <div class="roadmap">
+                  <a class="roadmap-step" href="#module-1"><i class="fa-solid fa-landmark" aria-hidden="true"></i><span>Phase 1</span><strong>History</strong></a>
+                  <a class="roadmap-step" href="#module-2"><i class="fa-solid fa-compass" aria-hidden="true"></i><span>Phase 2</span><strong>Principles</strong></a>
+                  <a class="roadmap-step" href="#module-3"><i class="fa-solid fa-vial-circle-check" aria-hidden="true"></i><span>Phase 3</span><strong>Potencies</strong></a>
+                  <a class="roadmap-step" href="#module-4"><i class="fa-solid fa-book-medical" aria-hidden="true"></i><span>Phase 4</span><strong>Materia Medica</strong></a>
+                  <a class="roadmap-step" href="#module-5"><i class="fa-solid fa-list-check" aria-hidden="true"></i><span>Phase 5</span><strong>Repertory</strong></a>
+                  <a class="roadmap-step" href="#module-6"><i class="fa-solid fa-clipboard-question" aria-hidden="true"></i><span>Phase 6</span><strong>Case Taking</strong></a>
+                  <a class="roadmap-step" href="#module-7"><i class="fa-solid fa-dna" aria-hidden="true"></i><span>Phase 7</span><strong>Miasms</strong></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="educational-alert h-100" role="note">
+              <h2 class="h4 mb-3">Study With Safety In View</h2>
+              <p class="mb-3">This site teaches the logic and language of classical homeopathy. It is educational, not medical advice.</p>
+              <p class="mb-0"><strong>Emergency care comes first.</strong> Chest pain, breathing difficulty, confusion, severe fever, suspected fracture, infants under 3 months, and rapidly worsening symptoms need qualified medical help.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="source-note mt-4">
+          Based on curriculum from <em>Dr. Bhatia's Homeopathy Foundation Course</em> (academy.doctorbhatia.com), <em>Alison.com Understanding Homeopathy</em>, and <em>The School of Homeopathy</em> (homeopathyschool.com).
+        </p>
+      </div>
+    </section>
+
+    <section class="module-section section-alt" id="module-1">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div class="reveal">
+            <span class="module-eyebrow">Module 1</span>
+            <h2 class="module-heading">History &amp; Origins</h2>
+            <p class="module-lead">Start with the historical thread: the cinchona experiment, the Organon, and the figures who shaped classical practice.</p>
+          </div>
+          <span class="module-badge"><i class="fa-solid fa-clock" aria-hidden="true"></i> Phase 1 of 7 | Estimated read: 15 min</span>
+        </div>
+
+        <h3 class="h4 mb-3 reveal">Timeline Visualization</h3>
+        <div class="timeline mb-5">
+          <article class="timeline-item reveal" role="article">
+            <div class="timeline-year">1755</div>
+            <h4 class="h5 mt-3">Samuel Hahnemann Is Born</h4>
+            <p>Born in Meissen, Germany, Hahnemann later trained as a physician, chemist, translator, and medical reformer.</p>
+          </article>
+          <article class="timeline-item reveal" role="article">
+            <div class="timeline-year">1790</div>
+            <h4 class="h5 mt-3">Cinchona Experiment</h4>
+            <p>While translating Cullen's <em>Materia Medica</em>, Hahnemann tested cinchona bark and observed malaria-like symptoms.</p>
+          </article>
+          <article class="timeline-item reveal" role="article">
+            <div class="timeline-year">1796</div>
+            <h4 class="h5 mt-3">Law of Similars Published</h4>
+            <p>His first paper on similia appeared in Hufeland's Journal, giving homeopathy its philosophical foundation.</p>
+          </article>
+          <article class="timeline-item reveal" role="article">
+            <div class="timeline-year">1810</div>
+            <h4 class="h5 mt-3"><em>Organon of Medicine</em></h4>
+            <p>The first edition formalized case taking, remedy selection, proving, minimum dose, and the vital force model.</p>
+          </article>
+          <article class="timeline-item reveal" role="article">
+            <div class="timeline-year">1828</div>
+            <h4 class="h5 mt-3"><em>Chronic Diseases</em></h4>
+            <p>Hahnemann introduced miasm theory to explain stubborn chronic illness and recurring disease patterns.</p>
+          </article>
+          <article class="timeline-item reveal" role="article">
+            <div class="timeline-year">1843</div>
+            <h4 class="h5 mt-3">Hahnemann Dies In Paris</h4>
+            <p>The sixth edition of the <em>Organon</em> was completed but remained unpublished for decades.</p>
+          </article>
+          <article class="timeline-item reveal" role="article">
+            <div class="timeline-year">1900</div>
+            <h4 class="h5 mt-3">Kent's Philosophy</h4>
+            <p>James Tyler Kent published <em>Lectures on Homeopathic Philosophy</em>, a lasting classical reference.</p>
+          </article>
+          <article class="timeline-item reveal" role="article">
+            <div class="timeline-year">1921</div>
+            <h4 class="h5 mt-3">Kent's Repertory</h4>
+            <p>Kent's repertory became a central tool for translating patient symptoms into remedy possibilities.</p>
+          </article>
+          <article class="timeline-item reveal" role="article">
+            <div class="timeline-year">Today</div>
+            <h4 class="h5 mt-3">Global Practice</h4>
+            <p>Homeopathy is practiced in 80+ countries and is often described as one of the world's large complementary systems.</p>
+          </article>
+        </div>
+
+        <h3 class="h4 mb-3 reveal">Key Figures</h3>
+        <div class="row g-4 mb-5">
+          <div class="col-md-6 col-xl-4">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <span class="icon-chip mb-3"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></span>
+                <h4 class="h5">Samuel Hahnemann</h4>
+                <p class="mb-0">Founder of homeopathy and author of the <em>Organon of Medicine</em>.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-4">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <span class="icon-chip mb-3"><i class="fa-solid fa-book" aria-hidden="true"></i></span>
+                <h4 class="h5">James Tyler Kent</h4>
+                <p class="mb-0">Systematized repertory use and influenced constitutional prescribing.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-4">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <span class="icon-chip mb-3"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i></span>
+                <h4 class="h5">Constantine Hering</h4>
+                <p class="mb-0">"Father of American Homeopathy" and namesake of Hering's Law of Cure.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-4">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <span class="icon-chip mb-3"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                <h4 class="h5">William Boericke</h4>
+                <p class="mb-0">Author of the widely used <em>Pocket Manual of Materia Medica</em>.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-4">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <span class="icon-chip mb-3"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+                <h4 class="h5">George Vithoulkas</h4>
+                <p class="mb-0">Modern classical teacher known for e-learning and international education.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-7">
+            <article class="card reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Quick Quiz</h3>
+                <form id="historyQuiz" class="mt-3">
+                  <fieldset class="mb-3">
+                    <legend class="h6">1. Who founded homeopathy?</legend>
+                    <label class="quiz-option"><input type="radio" name="q1" value="Samuel Hahnemann"> Samuel Hahnemann</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="James Tyler Kent"> James Tyler Kent</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="William Boericke"> William Boericke</label>
+                  </fieldset>
+                  <fieldset class="mb-3">
+                    <legend class="h6">2. What year was the <em>Organon</em> first published?</legend>
+                    <label class="quiz-option"><input type="radio" name="q2" value="1796"> 1796</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="1810"> 1810</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="1828"> 1828</label>
+                  </fieldset>
+                  <fieldset class="mb-3">
+                    <legend class="h6">3. Which experiment led to the Law of Similars?</legend>
+                    <label class="quiz-option"><input type="radio" name="q3" value="Cinchona bark"> Cinchona bark</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="Calendula tincture"> Calendula tincture</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="Lycopodium spores"> Lycopodium spores</label>
+                  </fieldset>
+                  <button class="btn btn-primary-academy" type="submit">Submit Quiz</button>
+                  <output class="d-block mt-3 fw-bold" id="historyQuizResult"></output>
+                </form>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-5">
+            <article class="card reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Sources</h3>
+                <ul class="mb-0">
+                  <li><em>Organon of Medicine</em> (6th ed.), Hahnemann.</li>
+                  <li><em>The Complete Homeopathy Handbook</em>, Miranda Castro.</li>
+                  <li><em>Impossible Cure</em>, Amy Lansky PhD.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="complete-panel">
+          <div>
+            <strong>Finished Phase 1?</strong>
+            <div class="small-muted">Mark it complete to update your learning progress.</div>
+          </div>
+          <button class="btn btn-outline-academy complete-module" type="button" data-module="module-1"><i class="fa-regular fa-circle-check me-2" aria-hidden="true"></i>Mark Module Complete</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="module-section" id="module-2">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div class="reveal">
+            <span class="module-eyebrow">Module 2</span>
+            <h2 class="module-heading">Core Principles</h2>
+            <p class="module-lead">Learn the ideas that organize classical homeopathy: similars, proving, vital force, potentization, and the direction of cure.</p>
+          </div>
+          <span class="module-badge"><i class="fa-solid fa-clock" aria-hidden="true"></i> Phase 2 of 7 | Estimated read: 20 min</span>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-5">
+            <div class="flip-card reveal" tabindex="0" aria-label="Law of Similars flip card">
+              <div class="flip-card-inner">
+                <article class="flip-face" role="article">
+                  <span class="icon-chip mb-3"><i class="fa-solid fa-repeat" aria-hidden="true"></i></span>
+                  <h3>Like Cures Like</h3>
+                  <p class="mb-0">Similia Similibus Curentur</p>
+                </article>
+                <article class="flip-face flip-back" role="article">
+                  <h3 class="h4">Law of Similars</h3>
+                  <p>A substance that can produce a symptom pattern in a healthy person is selected when a sick person presents a similar totality.</p>
+                  <p class="mb-0"><strong>Examples:</strong> Coffea may match insomnia with mental overactivity; Allium Cepa may match hay fever with watery eyes and bland discharge.</p>
+                </article>
+              </div>
+            </div>
+            <div class="source-list">Source: <em>Organon of Medicine</em> §26.</div>
+          </div>
+
+          <div class="col-lg-7">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Law of Infinitesimals</h3>
+                <p>The C scale repeats a 1:100 dilution with succussion. Classical homeopathy treats potentization as a dynamic process, where dilution and shaking are understood to release remedial activity.</p>
+                <div class="dilution-ladder mt-3">
+                  <div class="dilution-step">
+                    <span class="step-number">1C</span>
+                    <span>1 drop mother tincture + 99 drops water/alcohol, then succuss.</span>
+                  </div>
+                  <div class="dilution-step">
+                    <span class="step-number">2C</span>
+                    <span>1 drop of 1C + 99 drops, then succuss again.</span>
+                  </div>
+                  <div class="dilution-step">
+                    <span class="step-number">30C</span>
+                    <span>The same step repeated 30 times: a counterintuitive high dilution used commonly in acute home prescribing.</span>
+                  </div>
+                </div>
+                <div class="source-list">Sources: <em>Organon</em> §269-271.</div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-6">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Vital Force (Dynamis)</h3>
+                <p>Hahnemann described an immaterial, dynamic energy that animates the living organism. Disease is understood as a derangement of this vital force; the remedy is selected to restore harmony.</p>
+                <div class="vital-diagram mt-4">
+                  <div class="vital-node"><strong>Healthy Vital Force</strong><br><span class="small-muted">Coherent, responsive organism</span></div>
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                  <div class="vital-node"><strong>Derangement</strong><br><span class="small-muted">Symptoms as the language of imbalance</span></div>
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                  <div class="vital-node"><strong>Similar Remedy</strong><br><span class="small-muted">A dynamic stimulus to reorganize response</span></div>
+                </div>
+                <div class="source-list">Sources: <em>Organon</em> §9-11.</div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-6">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Hering's Law of Cure</h3>
+                <div class="d-grid gap-3 mt-3">
+                  <div class="hering-step"><span class="step-number">1</span><span>From inside to out: deeper organs settle before skin or surface expressions.</span></div>
+                  <div class="hering-step"><span class="step-number">2</span><span>From above downward: head and upper body symptoms may improve first.</span></div>
+                  <div class="hering-step"><span class="step-number">3</span><span>From most vital organs to least vital tissues.</span></div>
+                  <div class="hering-step"><span class="step-number">4</span><span>Old symptoms may briefly return in reverse order, then resolve.</span></div>
+                </div>
+                <p class="mt-3 mb-0">Example: in a chronic eczema case, sleep, mood, and digestion improving before skin fully clears is considered a favorable direction.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Doctrine of Drug Proving</h3>
+                <div class="accordion" id="provingAccordion">
+                  <div class="accordion-item">
+                    <h4 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#provingOne">Healthy volunteers take a substance</button></h4>
+                    <div id="provingOne" class="accordion-collapse collapse show" data-bs-parent="#provingAccordion"><div class="accordion-body">The proving begins with healthy people, not sick patients, so the substance's symptom-producing pattern can be observed.</div></div>
+                  </div>
+                  <div class="accordion-item">
+                    <h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#provingTwo">All symptoms are recorded</button></h4>
+                    <div id="provingTwo" class="accordion-collapse collapse" data-bs-parent="#provingAccordion"><div class="accordion-body">Mental, emotional, general, local, time, weather, and modality changes are captured in detail.</div></div>
+                  </div>
+                  <div class="accordion-item">
+                    <h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#provingThree">The proving becomes a remedy picture</button></h4>
+                    <div id="provingThree" class="accordion-collapse collapse" data-bs-parent="#provingAccordion"><div class="accordion-body">Those produced symptoms become the set of symptoms the remedy may cure when matched in a patient.</div></div>
+                  </div>
+                  <div class="accordion-item">
+                    <h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#provingFour">First proving: Cinchona bark</button></h4>
+                    <div id="provingFour" class="accordion-collapse collapse" data-bs-parent="#provingAccordion"><div class="accordion-body">Hahnemann tested cinchona on himself in 1790 and reported symptoms resembling intermittent fever.</div></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-6">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Systems Comparison</h3>
+                <div class="table-responsive">
+                  <table class="table align-middle">
+                    <thead><tr><th>Row</th><th>Homeopathy</th><th>Conventional</th><th>Ayurveda</th></tr></thead>
+                    <tbody>
+                      <tr><th>Basis</th><td>Law of similars</td><td>Pathology and physiology</td><td>Dosha balance</td></tr>
+                      <tr><th>Unit</th><td>Whole person totality</td><td>Diagnosis or organ system</td><td>Constitution and imbalance</td></tr>
+                      <tr><th>Disease view</th><td>Dynamic vital-force disturbance</td><td>Biological dysfunction</td><td>Imbalance in body-mind ecology</td></tr>
+                      <tr><th>Selection</th><td>Individual symptom picture</td><td>Evidence-based protocol</td><td>Diet, herbs, lifestyle, therapies</td></tr>
+                      <tr><th>Side effects</th><td>Typically low material toxicity in high potencies</td><td>Depends on drug and dose</td><td>Depends on herbs, dose, constitution</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="source-list">Sources: <em>Organon</em>; Kent's <em>Lectures on Homoeopathic Philosophy</em>.</div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="complete-panel">
+          <div>
+            <strong>Finished Phase 2?</strong>
+            <div class="small-muted">The principles are the grammar of every later module.</div>
+          </div>
+          <button class="btn btn-outline-academy complete-module" type="button" data-module="module-2"><i class="fa-regular fa-circle-check me-2" aria-hidden="true"></i>Mark Module Complete</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="module-section section-alt" id="module-3">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div class="reveal">
+            <span class="module-eyebrow">Module 3</span>
+            <h2 class="module-heading">Potencies &amp; Preparations</h2>
+            <p class="module-lead">See how potency scales work, how remedies are prepared, and how acute self-use decisions are commonly framed.</p>
+          </div>
+          <span class="module-badge"><i class="fa-solid fa-clock" aria-hidden="true"></i> Phase 3 of 7 | Estimated read: 20 min</span>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-7">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Potency Scales</h3>
+                <p>X/D scale uses 1:10 dilutions, C/CH uses 1:100, and LM/Q uses 1:50,000. The chart compares total dilution factor on a logarithmic scale.</p>
+                <div class="chart-wrap"><canvas id="potencyChart" aria-label="Dilution scale comparison bar chart"></canvas></div>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-5">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Interactive Potency Calculator</h3>
+                <label class="form-label" for="dilutionCount">Number of dilutions</label>
+                <input class="form-control mb-3" id="dilutionCount" type="number" min="1" max="1000" value="30">
+                <label class="form-label" for="scaleSelect">Scale</label>
+                <select class="form-select mb-3" id="scaleSelect">
+                  <option value="X">X / D scale (1:10)</option>
+                  <option value="C" selected>C / CH scale (1:100)</option>
+                  <option value="LM">LM / Q scale (1:50,000)</option>
+                </select>
+                <button class="btn btn-primary-academy" id="calculatePotency" type="button">Calculate</button>
+                <div class="case-summary mt-3" id="potencyResult" aria-live="polite"></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-6">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Potency Selection Guide</h3>
+                <div class="accordion" id="potencyGuide">
+                  <div class="accordion-item"><h4 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#potLow">3X-12X / 3C-12C</button></h4><div id="potLow" class="accordion-collapse collapse show" data-bs-parent="#potencyGuide"><div class="accordion-body">Tissue salts, biochemic remedies, organ support, and clear local symptoms. Lower potency is usually repeated more frequently.</div></div></div>
+                  <div class="accordion-item"><h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pot30">30C</button></h4><div id="pot30" class="accordion-collapse collapse" data-bs-parent="#potencyGuide"><div class="accordion-body">The standard potency for home use in many acute conditions when the symptom picture is reasonably clear.</div></div></div>
+                  <div class="accordion-item"><h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pot200">200C</button></h4><div id="pot200" class="accordion-collapse collapse" data-bs-parent="#potencyGuide"><div class="accordion-body">Often reserved for strong, clear pictures, more intense acute states, or constitutional use under guidance.</div></div></div>
+                  <div class="accordion-item"><h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pot1m">1M</button></h4><div id="pot1m" class="accordion-collapse collapse" data-bs-parent="#potencyGuide"><div class="accordion-body">High potency. Best kept for trained prescribing with a clear constitutional picture.</div></div></div>
+                </div>
+                <p class="mt-3 mb-0"><strong>Rule of thumb:</strong> lower potency = repeat more frequently; higher potency = dose less often.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-6">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">How Remedies Are Made</h3>
+                <div class="d-grid gap-3 mt-3">
+                  <div class="making-step"><span class="step-number">1</span><span>Mother tincture: plant material is prepared in alcohol, or insoluble substances are triturated in lactose.</span></div>
+                  <div class="making-step"><span class="step-number">2</span><span>1 drop + 99 drops water/alcohol, then vigorous shaking 10 times = 1C.</span></div>
+                  <div class="making-step"><span class="step-number">3</span><span>1 drop of 1C + 99 drops, then succussion = 2C.</span></div>
+                  <div class="making-step"><span class="step-number">n</span><span>Repeat to the desired potency; insoluble substances typically use trituration through early potencies.</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <h3 class="h4 mb-3 reveal">Remedy Forms</h3>
+        <div class="row g-4">
+          <div class="col-sm-6 col-lg-4"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-circle-dot" aria-hidden="true"></i></span><h4 class="h5">Pillules</h4><p class="mb-0">Small lactose pellets, the most common home-use form.</p></div></article></div>
+          <div class="col-sm-6 col-lg-4"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-tablets" aria-hidden="true"></i></span><h4 class="h5">Tablets</h4><p class="mb-0">Compressed form, often used for tissue salts and common remedies.</p></div></article></div>
+          <div class="col-sm-6 col-lg-4"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-droplet" aria-hidden="true"></i></span><h4 class="h5">Liquid Drops</h4><p class="mb-0">Dilutions in water/alcohol, convenient for dosing and repetition.</p></div></article></div>
+          <div class="col-sm-6 col-lg-4"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-flask" aria-hidden="true"></i></span><h4 class="h5">Mother Tincture (Q)</h4><p class="mb-0">Low-material preparation, commonly plant-based and more pharmacologically material.</p></div></article></div>
+          <div class="col-sm-6 col-lg-4"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-prescription-bottle-medical" aria-hidden="true"></i></span><h4 class="h5">Ointments &amp; Creams</h4><p class="mb-0">Topical uses such as Calendula preparations for skin support.</p></div></article></div>
+          <div class="col-sm-6 col-lg-4"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-cubes-stacked" aria-hidden="true"></i></span><h4 class="h5">Tissue Salts</h4><p class="mb-0">Schuessler's 12 biochemic salts, usually low potency.</p></div></article></div>
+        </div>
+        <div class="source-list">Sources: Boericke's <em>Pocket Manual</em>; <em>Organon</em> §269-271; oorep.com.</div>
+
+        <div class="complete-panel">
+          <div>
+            <strong>Finished Phase 3?</strong>
+            <div class="small-muted">You can now read potency labels and understand their scale.</div>
+          </div>
+          <button class="btn btn-outline-academy complete-module" type="button" data-module="module-3"><i class="fa-regular fa-circle-check me-2" aria-hidden="true"></i>Mark Module Complete</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="module-section" id="module-4">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div class="reveal">
+            <span class="module-eyebrow">Module 4</span>
+            <h2 class="module-heading">Materia Medica</h2>
+            <p class="module-lead">Materia Medica is the library of remedy pictures: provings, toxicology, and clinical observation arranged for practical study.</p>
+          </div>
+          <span class="module-badge"><i class="fa-solid fa-clock" aria-hidden="true"></i> Phase 4 of 7 | Estimated read: 40 min</span>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-6">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">What Is Materia Medica?</h3>
+                <p>The encyclopedic collection of documented remedy symptom-pictures from provings, toxicology, and clinical observation.</p>
+                <ul class="mb-0">
+                  <li>3,000+ substances are documented in modern repertory systems.</li>
+                  <li>A practical core of roughly 100-250 polychrests covers most common study cases.</li>
+                  <li>Beginners learn remedy portraits, keynotes, modalities, and differentiations.</li>
+                </ul>
+                <div class="source-list">Source: hpathy.com structured study guidance.</div>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-6">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Polychrests vs Small Remedies</h3>
+                <div class="row g-3">
+                  <div class="col-sm-6">
+                    <div class="repertory-rubric h-100"><strong>Polychrests</strong><br><span class="small-muted">Broad application, many symptoms, well-proven, used often in constitutional work.</span></div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="repertory-rubric h-100"><strong>Small Remedies</strong><br><span class="small-muted">Narrow action, specific presentations, useful when the keynote is unmistakable.</span></div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0"><strong>Keynote remedies</strong> may be recognized through one or two red-thread symptoms that sharply individualize the case.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-5">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Breadth Of Action</h3>
+                <p class="small-muted">A study visualization for the 10 core polychrests.</p>
+                <div class="chart-wrap"><canvas id="polychrestChart" aria-label="Breadth of action for polychrests"></canvas></div>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-7">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">10 Core Polychrest Remedies</h3>
+                <ul class="nav nav-pills gap-2 mb-3" id="polychrestTabs" role="tablist"></ul>
+                <div class="tab-content" id="polychrestContent"></div>
+                <div class="source-list">Sources: IJCRT Polychrest Review; Kent's Materia Medica; hpathy.com.</div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <article class="card mb-5 reveal" role="article">
+          <div class="card-body">
+            <div class="d-flex flex-wrap gap-3 align-items-center justify-content-between mb-3">
+              <div>
+                <h3 class="h4 mb-1">First Aid Remedy Quick Reference</h3>
+                <p class="small-muted mb-0">Filter by symptom, remedy, or keynote.</p>
+              </div>
+              <div class="col-12 col-md-4">
+                <label class="visually-hidden" for="firstAidFilter">Filter first aid remedies</label>
+                <input class="form-control" id="firstAidFilter" type="search" placeholder="Search first aid remedies">
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle" id="firstAidTable">
+                <thead><tr><th>Remedy</th><th>Key Condition</th><th>Keynote</th></tr></thead>
+                <tbody>
+                  <tr><td>Arnica Montana</td><td>Injuries, bruises, shock</td><td>"I'm fine, don't touch me"</td></tr>
+                  <tr><td>Aconite</td><td>Sudden fever, shock, fright</td><td>After exposure to cold/fright; midnight fear</td></tr>
+                  <tr><td>Belladonna</td><td>High fever, sudden inflammation</td><td>Redness, heat, throbbing, sudden onset</td></tr>
+                  <tr><td>Calendula</td><td>Wounds, cuts, infected skin</td><td>Promotes healing, prevents sepsis</td></tr>
+                  <tr><td>Apis Mellifica</td><td>Bee sting, allergic swelling</td><td>Puffy, rosy, stinging, better cold</td></tr>
+                  <tr><td>Cantharis</td><td>Burns, UTI with burning</td><td>Intense burning before/during/after urination</td></tr>
+                  <tr><td>Rhus Tox</td><td>Joint pain, sprains, skin</td><td>Worse first motion, better continued motion</td></tr>
+                  <tr><td>Bryonia</td><td>Dry, stitching pain</td><td>Worse any motion; wants to lie still</td></tr>
+                  <tr><td>Hypericum</td><td>Nerve injuries, puncture wounds</td><td>Nerve pain shooting upward</td></tr>
+                  <tr><td>Ledum</td><td>Puncture wounds, insect bites</td><td>Cold applications relieve</td></tr>
+                  <tr><td>Chamomilla</td><td>Teething children; unbearable pain</td><td>Child demands things, throws them away; one cheek red</td></tr>
+                  <tr><td>Gelsemium</td><td>Flu, anticipatory anxiety</td><td>Weak, trembling, drowsy; no thirst with fever</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Study Sequence Guide</h3>
+                <ol class="mb-0">
+                  <li>Start with Nash's <em>Leaders in Homeopathic Therapeutics</em>.</li>
+                  <li>Use Boericke's <em>Pocket Manual</em> for broader reference.</li>
+                  <li>Then read Kent's <em>Lectures on Homoeopathic Materia Medica</em>.</li>
+                  <li>Use homeopathybooks.in for classic free texts.</li>
+                  <li>Use hpathy.com for remedy articles, provings, and study support.</li>
+                </ol>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-5">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Beginner Study Rule</h3>
+                <p>Do not memorize remedies as labels for diseases. Learn each remedy as a living pattern: temperament, generals, modalities, sensations, keynotes, and differentiations.</p>
+                <p class="mb-0">Materia Medica becomes useful when it is cross-checked against repertory rubrics and the whole case.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="complete-panel">
+          <div>
+            <strong>Finished Phase 4?</strong>
+            <div class="small-muted">You now have the core vocabulary of remedy pictures.</div>
+          </div>
+          <button class="btn btn-outline-academy complete-module" type="button" data-module="module-4"><i class="fa-regular fa-circle-check me-2" aria-hidden="true"></i>Mark Module Complete</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="module-section section-alt" id="module-5">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div class="reveal">
+            <span class="module-eyebrow">Module 5</span>
+            <h2 class="module-heading">Repertory</h2>
+            <p class="module-lead">The repertory is the reverse dictionary of homeopathy: symptom to remedy, rubric to comparison, case to candidate remedies.</p>
+          </div>
+          <span class="module-badge"><i class="fa-solid fa-clock" aria-hidden="true"></i> Phase 5 of 7 | Estimated read: 25 min</span>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-5">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">What Is The Repertory?</h3>
+                <p>A massive indexed database of symptoms mapped to remedies. You look up the symptom, not the remedy.</p>
+                <ul class="mb-0">
+                  <li>Kent's Repertory: 37 chapters, 647 pages, thousands of rubrics.</li>
+                  <li>Like a reverse dictionary for symptom language.</li>
+                  <li>Best used with Materia Medica confirmation.</li>
+                </ul>
+                <div class="source-list">Source: oorep.com and Kent's Repertory.</div>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-7">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Structure Of Kent's Repertory</h3>
+                <div class="accordion" id="kentAccordion">
+                  <div class="accordion-item"><h4 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#kentMind">Mind</button></h4><div id="kentMind" class="accordion-collapse collapse show" data-bs-parent="#kentAccordion"><div class="accordion-body">Examples: Anxiety, grief, irritability, fear of death, consolation aggravates.</div></div></div>
+                  <div class="accordion-item"><h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kentBody">Head To Respiration</button></h4><div id="kentBody" class="accordion-collapse collapse" data-bs-parent="#kentAccordion"><div class="accordion-body">Head, eyes, ears, nose, face, mouth, throat, stomach, abdomen, rectum, urinary, genitalia, respiration.</div></div></div>
+                  <div class="accordion-item"><h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kentGenerals">Chest To Generals</button></h4><div id="kentGenerals" class="accordion-collapse collapse" data-bs-parent="#kentAccordion"><div class="accordion-body">Chest, back, limbs, sleep, chill, fever, perspiration, skin, and generals.</div></div></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-4">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Remedy Grading</h3>
+                <div class="repertory-rubric">
+                  <p class="mb-2"><strong>Rubric:</strong> Skin, itching, heat aggravates</p>
+                  <p class="mb-1"><span class="grade-3">Sulph.</span> <span class="small-muted">Grade 3, strong</span></p>
+                  <p class="mb-1"><span class="grade-2">Rhus-t.</span> <span class="small-muted">Grade 2, moderate</span></p>
+                  <p class="mb-0"><span class="grade-1">Graph.</span> <span class="small-muted">Grade 1, mild</span></p>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-8">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">How To Repertorize</h3>
+                <div class="row g-3">
+                  <div class="col-md-6"><div class="repertory-rubric h-100"><strong>1. Take the complete case</strong><br><span class="small-muted">Gather symptoms with modalities and concomitants.</span></div></div>
+                  <div class="col-md-6"><div class="repertory-rubric h-100"><strong>2. Evaluate symptoms</strong><br><span class="small-muted">Mental > general > particular; PQRS carries high value.</span></div></div>
+                  <div class="col-md-6"><div class="repertory-rubric h-100"><strong>3. Translate to rubrics</strong><br><span class="small-muted">Convert patient language into repertory language.</span></div></div>
+                  <div class="col-md-6"><div class="repertory-rubric h-100"><strong>4. Find each rubric</strong><br><span class="small-muted">Record remedies and grades under each symptom.</span></div></div>
+                  <div class="col-md-6"><div class="repertory-rubric h-100"><strong>5. Compare overlap</strong><br><span class="small-muted">Look for remedies appearing in most or all rubrics.</span></div></div>
+                  <div class="col-md-6"><div class="repertory-rubric h-100"><strong>6. Confirm in Materia Medica</strong><br><span class="small-muted">Select the remedy matching the total picture.</span></div></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-5">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Mini Repertorization Demo</h3>
+                <p>Case: fever, thirstless, weepy, better in open air, changeable symptoms.</p>
+                <div class="d-flex flex-wrap gap-2 mb-3" id="rubricButtons">
+                  <button class="btn btn-outline-academy" type="button" data-rubric="thirstless">Thirstless</button>
+                  <button class="btn btn-outline-academy" type="button" data-rubric="changeable">Changeable symptoms</button>
+                  <button class="btn btn-outline-academy" type="button" data-rubric="openAir">Better open air</button>
+                  <button class="btn btn-outline-academy" type="button" data-rubric="weeping">Weeping tendency</button>
+                </div>
+                <div class="case-summary" id="repertoryResult" aria-live="polite">Select rubrics to see remedy overlap.</div>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-7">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Major Repertories Comparison</h3>
+                <div class="table-responsive">
+                  <table class="table align-middle">
+                    <thead><tr><th>Repertory</th><th>Author</th><th>Year</th><th>Rubrics</th><th>Best For</th></tr></thead>
+                    <tbody>
+                      <tr><td>Kent's Repertory</td><td>J.T. Kent</td><td>1897</td><td>~7,000</td><td>Classical homeopathy; mental symptoms</td></tr>
+                      <tr><td>Boger-Boenninghausen</td><td>Boger</td><td>1905</td><td>~5,000</td><td>Pathological prescribing</td></tr>
+                      <tr><td>Murphy's Repertory</td><td>Robin Murphy</td><td>2005</td><td>~65,000</td><td>Modern, clinically organized, beginners</td></tr>
+                      <tr><td>Synthesis</td><td>Schroyens</td><td>1993</td><td>~300,000</td><td>Comprehensive digital use</td></tr>
+                      <tr><td>Complete Repertory</td><td>van Zandvoort</td><td>1994</td><td>~290,000</td><td>Most comprehensive</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="mb-0 small-muted">Free access: oorep.com and homeoint.org/books/kentrep.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="complete-panel">
+          <div>
+            <strong>Finished Phase 5?</strong>
+            <div class="small-muted">Repertory gives the bridge from case language to remedy candidates.</div>
+          </div>
+          <button class="btn btn-outline-academy complete-module" type="button" data-module="module-5"><i class="fa-regular fa-circle-check me-2" aria-hidden="true"></i>Mark Module Complete</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="module-section" id="module-6">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div class="reveal">
+            <span class="module-eyebrow">Module 6</span>
+            <h2 class="module-heading">Case Taking</h2>
+            <p class="module-lead">Good prescribing begins with good listening. A complete symptom includes location, sensation, modality, and concomitant.</p>
+          </div>
+          <span class="module-badge"><i class="fa-solid fa-clock" aria-hidden="true"></i> Phase 6 of 7 | Estimated read: 25 min</span>
+        </div>
+
+        <article class="card mb-5 reveal" role="article">
+          <div class="card-body">
+            <h3 class="h4">Complete Symptom Formula</h3>
+            <div class="formula-grid mt-3">
+              <div class="repertory-rubric"><strong>Location</strong><br><span class="small-muted">Where exactly? Right side, left side, below knee, inside ear.</span></div>
+              <div class="repertory-rubric"><strong>Sensation</strong><br><span class="small-muted">Burning, stabbing, aching, pressing, pulsating.</span></div>
+              <div class="repertory-rubric"><strong>Modality</strong><br><span class="small-muted">Better or worse from time, weather, motion, food, position.</span></div>
+              <div class="repertory-rubric"><strong>Concomitant</strong><br><span class="small-muted">What else occurs at the same time?</span></div>
+            </div>
+          </div>
+        </article>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-6">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Symptom Hierarchy</h3>
+                <div class="mt-4">
+                  <div class="hierarchy-bar bar-pqrs"><span>1. Strange, Rare, Peculiar</span><span>Most weight</span></div>
+                  <div class="hierarchy-bar bar-mental"><span>2. Mental/emotional</span><span>High</span></div>
+                  <div class="hierarchy-bar bar-general"><span>3. General symptoms</span><span>Medium</span></div>
+                  <div class="hierarchy-bar bar-particular"><span>4. Particular symptoms</span><span>Local</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-6">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">PQRS Symptoms</h3>
+                <div class="accordion" id="pqrsAccordion">
+                  <div class="accordion-item"><h4 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pqrsOne">Thirstless with high fever</button></h4><div id="pqrsOne" class="accordion-collapse collapse show" data-bs-parent="#pqrsAccordion"><div class="accordion-body">Fever usually brings thirst; thirstlessness is a distinguishing feature.</div></div></div>
+                  <div class="accordion-item"><h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pqrsTwo">Contradictory modalities</button></h4><div id="pqrsTwo" class="accordion-collapse collapse" data-bs-parent="#pqrsAccordion"><div class="accordion-body">Example: burning pain better by heat in a chilly patient.</div></div></div>
+                  <div class="accordion-item"><h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pqrsThree">Distinctive modality</button></h4><div id="pqrsThree" class="accordion-collapse collapse" data-bs-parent="#pqrsAccordion"><div class="accordion-body">Headache better lying in the dark and pressing the head can narrow the remedy field.</div></div></div>
+                </div>
+                <div class="source-list">Source: <em>Organon</em> §153.</div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <h3 class="h4 mb-3 reveal">Key Modality Categories</h3>
+        <div class="row g-4 mb-5">
+          <div class="col-sm-6 col-lg-3"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-regular fa-clock" aria-hidden="true"></i></span><h4 class="h5">Time</h4><p class="mb-0">Morning, evening, midnight, 4-8pm, periodicity.</p></div></article></div>
+          <div class="col-sm-6 col-lg-3"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-temperature-half" aria-hidden="true"></i></span><h4 class="h5">Temperature</h4><p class="mb-0">Worse heat, worse cold, worse temperature change.</p></div></article></div>
+          <div class="col-sm-6 col-lg-3"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-cloud-rain" aria-hidden="true"></i></span><h4 class="h5">Weather</h4><p class="mb-0">Damp, wind, storms, humidity, seasons.</p></div></article></div>
+          <div class="col-sm-6 col-lg-3"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-person-walking" aria-hidden="true"></i></span><h4 class="h5">Motion</h4><p class="mb-0">Worse motion like Bryonia, better motion like Rhus Tox.</p></div></article></div>
+          <div class="col-sm-6 col-lg-3"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-bed" aria-hidden="true"></i></span><h4 class="h5">Position</h4><p class="mb-0">Lying, standing, sitting, bending, pressure.</p></div></article></div>
+          <div class="col-sm-6 col-lg-3"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-utensils" aria-hidden="true"></i></span><h4 class="h5">Food</h4><p class="mb-0">Cravings, aversions, aggravations, thirst.</p></div></article></div>
+          <div class="col-sm-6 col-lg-3"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-brain" aria-hidden="true"></i></span><h4 class="h5">Mental State</h4><p class="mb-0">Worse grief, anxiety, consolation, company, solitude.</p></div></article></div>
+          <div class="col-sm-6 col-lg-3"><article class="card h-100 reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-link" aria-hidden="true"></i></span><h4 class="h5">Concomitant</h4><p class="mb-0">Symptoms occurring together in a characteristic pairing.</p></div></article></div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Interactive Case-Taking Template</h3>
+                <form id="caseForm" class="row g-3">
+                  <div class="col-12"><label class="form-label" for="chiefComplaint">Chief complaint</label><textarea class="form-control" id="chiefComplaint" rows="2"></textarea></div>
+                  <div class="col-md-6"><label class="form-label" for="onset">Onset</label><select class="form-select" id="onset"><option>Sudden</option><option>Gradual</option><option>Recurring</option></select></div>
+                  <div class="col-md-6"><label class="form-label" for="sensation">Sensation</label><input class="form-control" id="sensation" type="text"></div>
+                  <div class="col-12">
+                    <span class="form-label d-block">Location</span>
+                    <div class="d-flex flex-wrap gap-3">
+                      <label><input type="checkbox" name="location" value="Right"> Right</label>
+                      <label><input type="checkbox" name="location" value="Left"> Left</label>
+                      <label><input type="checkbox" name="location" value="Bilateral"> Bilateral</label>
+                      <label><input type="checkbox" name="location" value="Alternating"> Alternating</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6"><label class="form-label" for="better">Better from</label><input class="form-control" id="better" type="text"></div>
+                  <div class="col-md-6"><label class="form-label" for="worse">Worse from</label><input class="form-control" id="worse" type="text"></div>
+                  <div class="col-12"><label class="form-label" for="concomitants">Concomitants</label><textarea class="form-control" id="concomitants" rows="2"></textarea></div>
+                  <div class="col-md-6"><label class="form-label" for="mentalState">Mental state</label><input class="form-control" id="mentalState" type="text"></div>
+                  <div class="col-md-6"><label class="form-label" for="generals">Generals</label><input class="form-control" id="generals" type="text" placeholder="Thermals, thirst, appetite, sleep, perspiration"></div>
+                  <div class="col-12"><button class="btn btn-primary-academy" type="submit">Generate Case Summary</button></div>
+                </form>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-5">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Structured Summary</h3>
+                <pre class="case-summary" id="caseSummary">Your case summary will appear here.</pre>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <h3 class="h4 mt-5 mb-3 reveal">Common Case-Taking Mistakes</h3>
+        <div class="row g-4">
+          <div class="col-md-6 col-xl-3"><article class="card h-100 danger-card reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-tag" aria-hidden="true"></i></span><h4 class="h5">Diagnosis Labels</h4><p class="mb-0">Over-emphasizing the disease name instead of the individual picture.</p></div></article></div>
+          <div class="col-md-6 col-xl-3"><article class="card h-100 danger-card reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-face-meh" aria-hidden="true"></i></span><h4 class="h5">Ignoring Emotion</h4><p class="mb-0">Missing the mental and emotional state that colors the case.</p></div></article></div>
+          <div class="col-md-6 col-xl-3"><article class="card h-100 danger-card reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-sliders" aria-hidden="true"></i></span><h4 class="h5">Missing Modalities</h4><p class="mb-0">Leaving out what makes symptoms better or worse.</p></div></article></div>
+          <div class="col-md-6 col-xl-3"><article class="card h-100 danger-card reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-comments" aria-hidden="true"></i></span><h4 class="h5">Leading Questions</h4><p class="mb-0">Suggesting answers instead of observing the patient's own language.</p></div></article></div>
+        </div>
+        <div class="source-list">Sources: Miranda Castro; <em>Organon</em> §§149-153; Kent's <em>Lectures on Homoeopathic Philosophy</em>.</div>
+
+        <div class="complete-panel">
+          <div>
+            <strong>Finished Phase 6?</strong>
+            <div class="small-muted">Case taking turns scattered symptoms into a useful totality.</div>
+          </div>
+          <button class="btn btn-outline-academy complete-module" type="button" data-module="module-6"><i class="fa-regular fa-circle-check me-2" aria-hidden="true"></i>Mark Module Complete</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="module-section section-alt" id="module-7">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div class="reveal">
+            <span class="module-eyebrow">Module 7</span>
+            <h2 class="module-heading">Miasms &amp; Chronic Disease</h2>
+            <p class="module-lead">Miasm theory is Hahnemann's attempt to explain recurring chronic patterns and why well-chosen acute remedies may not hold.</p>
+          </div>
+          <span class="module-badge"><i class="fa-solid fa-clock" aria-hidden="true"></i> Phase 7 of 7 | Estimated read: 30 min</span>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-5">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">What Is A Miasm?</h3>
+                <p>A fundamental predisposition or underlying disease tendency that perpetuates illness. Hahnemann introduced the theory in <em>Chronic Diseases</em> (1828).</p>
+                <p class="mb-0">Think of it as inherited disease soil: the background tendency that lets certain illness patterns recur.</p>
+                <div class="source-list">Source: Hahnemann's <em>Chronic Diseases</em>.</div>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-7">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Miasm Identification Chart</h3>
+                <div class="chart-wrap"><canvas id="miasmChart" aria-label="Radar chart comparing miasms"></canvas></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-md-6 col-xl-3">
+            <article class="card miasm-card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Psora</h3>
+                <p><strong>Theme:</strong> deficiency, lack, under-function, poverty consciousness.</p>
+                <p><strong>Expression:</strong> dry itchy skin, functional disorders, chronic fatigue, anxiety.</p>
+                <p><strong>Typical complaints:</strong> eczema, psoriasis, IBS, hypersensitivity.</p>
+                <p class="mb-0"><strong>Remedies:</strong> Sulphur, Calcarea Carb, Lycopodium, Psorinum.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <article class="card miasm-card miasm-sycosis h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Sycosis</h3>
+                <p><strong>Theme:</strong> excess, overflow, over-production, secrecy, fixity.</p>
+                <p><strong>Expression:</strong> warts, cysts, fibroids, excess secretions, fixed ideas.</p>
+                <p><strong>Typical complaints:</strong> PCOS, asthma, OCD tendency, joint disease.</p>
+                <p class="mb-0"><strong>Remedies:</strong> Thuja, Medorrhinum, Natrum Sulph, Causticum.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <article class="card miasm-card miasm-syphilinum h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Syphilinum</h3>
+                <p><strong>Theme:</strong> destruction, ulceration, degeneration, nihilism.</p>
+                <p><strong>Expression:</strong> ulcers, bone destruction, mental disturbance.</p>
+                <p><strong>Typical complaints:</strong> bone pains at night, progressive neurological disease, alcoholism.</p>
+                <p class="mb-0"><strong>Remedies:</strong> Mercury, Syphilinum, Kali Iod, Aurum Metallicum.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <article class="card miasm-card miasm-tubercular h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Tubercular</h3>
+                <p><strong>Theme:</strong> restlessness, longing for change, rapid breakdown.</p>
+                <p><strong>Expression:</strong> respiratory disease, allergies, recurring infections.</p>
+                <p><strong>Typical complaints:</strong> hyperactivity, desire to travel, repeated colds.</p>
+                <p class="mb-0"><strong>Remedies:</strong> Tuberculinum, Drosera, Phosphorus, Calcarea Phos.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Nosodes</h3>
+                <p>Nosodes are remedies made from diseased tissue or secretions. Classical homeopaths may use them when a well-chosen remedy plateaus against a miasmatic background.</p>
+                <p class="mb-0"><strong>Key nosodes:</strong> Psorinum, Medorrhinum, Syphilinum, Tuberculinum, Carcinosin. These are typically prescribed by trained homeopaths, not for self-use.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-6">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Reverse Of Disease Progression</h3>
+                <div class="d-grid gap-3 mt-3">
+                  <div class="hering-step"><span class="step-number">1</span><span>Symptoms move from vital organs toward the periphery.</span></div>
+                  <div class="hering-step"><span class="step-number">2</span><span>Symptoms move from head downward.</span></div>
+                  <div class="hering-step"><span class="step-number">3</span><span>Old symptoms briefly reappear and then disappear.</span></div>
+                </div>
+                <p class="mt-3 mb-0">In classical theory, this is considered a favorable sign when the overall patient is improving.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="source-list">Sources: Hahnemann's <em>Chronic Diseases</em>; Lotus Health Institute; hpathy.com miasm articles.</div>
+
+        <div class="complete-panel">
+          <div>
+            <strong>Finished Phase 7?</strong>
+            <div class="small-muted">You have completed the main learning path.</div>
+          </div>
+          <button class="btn btn-outline-academy complete-module" type="button" data-module="module-7"><i class="fa-regular fa-circle-check me-2" aria-hidden="true"></i>Mark Module Complete</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="module-section" id="module-8">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div class="reveal">
+            <span class="module-eyebrow">Module 8</span>
+            <h2 class="module-heading">Home Kit &amp; Practical Self-Help</h2>
+            <p class="module-lead">A practical reference for acute home use, safety limits, remedy storage, and learning resources.</p>
+          </div>
+          <span class="module-badge"><i class="fa-solid fa-kit-medical" aria-hidden="true"></i> Practical Reference</span>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-8">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <div class="d-flex flex-wrap gap-3 align-items-center justify-content-between mb-3">
+                  <div>
+                    <h3 class="h4 mb-1">Essential Home Kit: 35 Remedies</h3>
+                    <p class="small-muted mb-0">Each card lists common acute uses and 30C as a typical home-kit potency.</p>
+                  </div>
+                  <div class="col-12 col-md-5">
+                    <label class="visually-hidden" for="homeKitFilter">Filter home kit remedies</label>
+                    <input class="form-control" id="homeKitFilter" type="search" placeholder="Search remedy or use">
+                  </div>
+                </div>
+                <div class="row g-3" id="homeKitGrid"></div>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-4">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Home Kit Breakdown</h3>
+                <div class="chart-wrap"><canvas id="kitChart" aria-label="Remedy category breakdown doughnut chart"></canvas></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-5">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Potency Decision Tree</h3>
+                <div id="decisionTree" class="case-summary mb-3"></div>
+                <div class="d-flex flex-wrap gap-2" id="decisionTreeButtons"></div>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-7">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Dosage Rules</h3>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="pill">1 remedy at a time</span>
+                  <span class="pill">minimum dose</span>
+                  <span class="pill">2-4 pillules</span>
+                  <span class="pill">stop when better</span>
+                  <span class="pill">reassess if no change</span>
+                </div>
+                <ol class="mb-0">
+                  <li>Use one remedy at a time in classical homeopathy.</li>
+                  <li>Give the least possible dose to stimulate a response.</li>
+                  <li>Standard dose: 2-4 pillules under the tongue; let dissolve.</li>
+                  <li>Stop the remedy when better; repeat only if symptoms return.</li>
+                  <li>If no change in 48 hours for acute illness or 4 weeks for chronic illness, reassess.</li>
+                  <li>Avoid coffee, mint, camphor, strong essential oils, and steroids when following traditional guidance.</li>
+                  <li>Handle pillules with clean, dry hands and avoid touching unnecessarily.</li>
+                </ol>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <article class="card mb-5 reveal" role="article">
+          <div class="card-body">
+            <h3 class="h4">Common Conditions Quick Reference</h3>
+            <ul class="nav nav-tabs gap-2 mt-3" id="conditionTabs" role="tablist">
+              <li class="nav-item" role="presentation"><button class="nav-link active" id="injuries-tab" data-bs-toggle="tab" data-bs-target="#injuries" type="button" role="tab">Injuries &amp; First Aid</button></li>
+              <li class="nav-item" role="presentation"><button class="nav-link" id="fever-tab" data-bs-toggle="tab" data-bs-target="#fever" type="button" role="tab">Fever &amp; Infections</button></li>
+              <li class="nav-item" role="presentation"><button class="nav-link" id="digestive-tab" data-bs-toggle="tab" data-bs-target="#digestive" type="button" role="tab">Digestive Issues</button></li>
+              <li class="nav-item" role="presentation"><button class="nav-link" id="emotion-tab" data-bs-toggle="tab" data-bs-target="#emotion" type="button" role="tab">Anxiety &amp; Emotions</button></li>
+            </ul>
+            <div class="tab-content pt-4">
+              <div class="tab-pane fade show active" id="injuries" role="tabpanel" aria-labelledby="injuries-tab">
+                <div class="table-responsive"><table class="table condition-table"><thead><tr><th>Condition</th><th>First Choice</th><th>If no response</th></tr></thead><tbody><tr><td>Bruising, shock after injury</td><td>Arnica 30C</td><td>Ledum if joint</td></tr><tr><td>Cuts, open wounds</td><td>Calendula topical + 30C oral</td><td>Hypericum if nerve-rich area</td></tr><tr><td>Sprains</td><td>Arnica then Rhus Tox</td><td>Ruta if tendons/ligaments</td></tr><tr><td>Burns</td><td>Cantharis 30C</td><td>Urtica Urens if superficial</td></tr><tr><td>Puncture wounds</td><td>Ledum 30C</td><td>Hypericum if nerve pain</td></tr><tr><td>Bee/wasp sting</td><td>Apis 30C</td><td>Seek emergency care for anaphylaxis</td></tr></tbody></table></div>
+              </div>
+              <div class="tab-pane fade" id="fever" role="tabpanel" aria-labelledby="fever-tab">
+                <div class="table-responsive"><table class="table condition-table"><thead><tr><th>Condition</th><th>First Choice</th><th>Keynote to confirm</th></tr></thead><tbody><tr><td>Sudden high fever</td><td>Aconite 30C</td><td>After cold/fright, anxious, midnight</td></tr><tr><td>High fever, red face</td><td>Belladonna 30C</td><td>Throbbing, glassy eyes, hot and dry</td></tr><tr><td>Flu with weakness</td><td>Gelsemium 30C</td><td>Weak, drowsy, trembling, no thirst</td></tr><tr><td>Slow fever, no thirst</td><td>Pulsatilla 30C</td><td>Changeable, wants open air</td></tr><tr><td>Restless, burning</td><td>Arsenicum 30C</td><td>Better warmth, midnight aggravation</td></tr><tr><td>Cold with yellow-green mucus</td><td>Kali Bich 30C</td><td>Thick, stringy, tough mucus</td></tr></tbody></table></div>
+              </div>
+              <div class="tab-pane fade" id="digestive" role="tabpanel" aria-labelledby="digestive-tab">
+                <div class="table-responsive"><table class="table condition-table"><thead><tr><th>Condition</th><th>First Choice</th><th>Keynote</th></tr></thead><tbody><tr><td>Overeating, hangover</td><td>Nux Vomica 30C</td><td>Chilly, irritable, craves stimulants</td></tr><tr><td>Food poisoning, burning</td><td>Arsenicum 30C</td><td>Restless, burning, better warmth</td></tr><tr><td>Food poisoning, vomiting/diarrhea</td><td>China 30C</td><td>Exhausted, flatulence, weakness</td></tr><tr><td>Colic, cramping</td><td>Colocynthis 30C</td><td>Doubling up with pain, better pressure</td></tr><tr><td>Colic in infants</td><td>Chamomilla 30C</td><td>Screaming, one cheek red</td></tr><tr><td>Heartburn, gas</td><td>Carbo Veg 30C</td><td>Bloating, belching, coldness</td></tr></tbody></table></div>
+              </div>
+              <div class="tab-pane fade" id="emotion" role="tabpanel" aria-labelledby="emotion-tab">
+                <div class="table-responsive"><table class="table condition-table"><thead><tr><th>Condition</th><th>First Choice</th><th>Keynote</th></tr></thead><tbody><tr><td>Acute grief/loss</td><td>Ignatia 30C</td><td>Sobbing, lump in throat, sighing</td></tr><tr><td>Anticipatory anxiety</td><td>Gelsemium 30C</td><td>Trembling, weakness, diarrhea</td></tr><tr><td>Panic attacks</td><td>Aconite 30C</td><td>Sudden intense fear of death</td></tr><tr><td>Burnout, overwork</td><td>Nux Vomica 30C</td><td>Driven, chilly, digestive symptoms</td></tr><tr><td>Prolonged grief</td><td>Natrum Mur 30C</td><td>Silent grief, cannot cry with others</td></tr></tbody></table></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <h3 class="h4 mb-3 reveal">When NOT To Self-Treat</h3>
+        <div class="row g-4 mb-5">
+          <div class="col-sm-6 col-lg-4"><article class="card h-100 danger-card reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i></span><h4 class="h5">Chest Pain</h4><p class="mb-0">Chest pain or pressure can be cardiac emergency.</p></div></article></div>
+          <div class="col-sm-6 col-lg-4"><article class="card h-100 danger-card reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-lungs" aria-hidden="true"></i></span><h4 class="h5">Breathing Difficulty</h4><p class="mb-0">Shortness of breath, blue lips, or severe wheeze needs urgent care.</p></div></article></div>
+          <div class="col-sm-6 col-lg-4"><article class="card h-100 danger-card reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-temperature-high" aria-hidden="true"></i></span><h4 class="h5">High Fever</h4><p class="mb-0">Fever above 104°F / 40°C that will not come down requires medical help.</p></div></article></div>
+          <div class="col-sm-6 col-lg-4"><article class="card h-100 danger-card reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-head-side-virus" aria-hidden="true"></i></span><h4 class="h5">Meningitis Signs</h4><p class="mb-0">Stiff neck with fever, confusion, or severe headache is urgent.</p></div></article></div>
+          <div class="col-sm-6 col-lg-4"><article class="card h-100 danger-card reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-bone" aria-hidden="true"></i></span><h4 class="h5">Suspected Fracture</h4><p class="mb-0">Major injuries and possible fractures need assessment.</p></div></article></div>
+          <div class="col-sm-6 col-lg-4"><article class="card h-100 danger-card reveal" role="article"><div class="card-body"><span class="icon-chip mb-3"><i class="fa-solid fa-baby" aria-hidden="true"></i></span><h4 class="h5">Infants Under 3 Months</h4><p class="mb-0">Young infants need prompt professional evaluation.</p></div></article></div>
+        </div>
+        <div class="educational-alert mb-5">
+          <strong>In any emergency, call for medical help first.</strong> Homeopathy can be used alongside emergency care, but never instead of it. Also seek care for loss of consciousness, confusion, rapidly worsening illness, and symptoms that do not improve within 48 hours with a correct acute remedy.
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-5">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Remedy Storage &amp; Handling</h3>
+                <ul class="mb-0">
+                  <li>Store in a cool, dry place away from sunlight.</li>
+                  <li>Keep away from strong smells such as essential oils, camphor, and eucalyptus.</li>
+                  <li>Traditional guidance avoids strong electromagnetic fields.</li>
+                  <li>Shelf life is considered long if stored correctly.</li>
+                  <li>Label all remedies clearly with name and potency.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-7">
+            <article class="card h-100 reveal" role="article">
+              <div class="card-body">
+                <h3 class="h4">Recommended Resources</h3>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <h4 class="h6">Free Online</h4>
+                    <ul>
+                      <li>hpathy.com</li>
+                      <li>homeopathybooks.in</li>
+                      <li>oorep.com</li>
+                      <li>homeoint.org</li>
+                      <li>alison.com</li>
+                      <li>academy.doctorbhatia.com</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h4 class="h6">Books In Reading Order</h4>
+                    <ol>
+                      <li><em>The Complete Homeopathy Handbook</em></li>
+                      <li><em>Homeopathy: Start Here</em></li>
+                      <li><em>Impossible Cure</em></li>
+                      <li><em>Leaders in Homeopathic Therapeutics</em></li>
+                      <li><em>Pocket Manual of Materia Medica</em></li>
+                      <li><em>Organon of Medicine</em></li>
+                      <li><em>Lectures on Homoeopathic Philosophy</em></li>
+                    </ol>
+                  </div>
+                </div>
+                <p class="mb-0"><strong>Professional courses:</strong> School of Homeopathy, Vithoulkas E-Learning, Lotus Health Institute.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="complete-panel">
+          <div>
+            <strong>Reference reviewed</strong>
+            <div class="small-muted">The main progress tracker counts the 7 learning phases; this section is your ongoing practical reference.</div>
+          </div>
+          <button class="btn btn-outline-academy" type="button" id="referenceReviewed"><i class="fa-regular fa-bookmark me-2" aria-hidden="true"></i>Mark Reference Reviewed</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <h2 class="h3 text-white">🌿 Homeopathy Academy</h2>
+          <p>Based on classical homeopathic literature and verified educational sources.</p>
+        </div>
+        <div class="col-lg-4">
+          <h3 class="h5 text-white">Quick Links</h3>
+          <div class="row">
+            <div class="col-6">
+              <ul class="list-unstyled">
+                <li><a href="#module-1">History</a></li>
+                <li><a href="#module-2">Principles</a></li>
+                <li><a href="#module-3">Potencies</a></li>
+                <li><a href="#module-4">Materia Medica</a></li>
+              </ul>
+            </div>
+            <div class="col-6">
+              <ul class="list-unstyled">
+                <li><a href="#module-5">Repertory</a></li>
+                <li><a href="#module-6">Case Taking</a></li>
+                <li><a href="#module-7">Miasms</a></li>
+                <li><a href="#module-8">Home Kit</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <h3 class="h5 text-white">Key Sources</h3>
+          <ul class="list-unstyled">
+            <li><a href="https://academy.doctorbhatia.com">academy.doctorbhatia.com</a></li>
+            <li><a href="https://homeopathybooks.in">homeopathybooks.in</a></li>
+            <li><a href="https://hpathy.com">hpathy.com</a></li>
+            <li><a href="https://oorep.com">oorep.com</a></li>
+            <li><a href="https://alison.com/course/understanding-homeopathy">alison.com/course/understanding-homeopathy</a></li>
+            <li><a href="https://lotushealthinstitute.com">lotushealthinstitute.com</a></li>
+            <li><a href="https://vithoulkas.edu.gr">vithoulkas.edu.gr</a></li>
+            <li><a href="https://boironusa.com/trainings/books-guides">boironusa.com/trainings/books-guides</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="disclaimer">
+        <strong>Disclaimer:</strong> This website is for educational purposes only. Homeopathy is a complementary system of medicine. Nothing on this site constitutes medical advice. Always consult a qualified healthcare professional for any health condition, especially in emergencies, for children, during pregnancy, or for any serious or chronic illness.
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-actions">
+    <button class="btn btn-primary-academy" type="button" data-bs-toggle="modal" data-bs-target="#searchModal" aria-label="Open remedy search">
+      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span class="d-none d-sm-inline">Search</span>
+    </button>
+    <button class="btn btn-outline-academy" type="button" id="backToTop" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h4" id="searchModalLabel">Global Remedy Search</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label class="form-label" for="globalSearchInput">Search remedies, conditions, symptoms, and modules</label>
+          <input class="form-control form-control-lg" id="globalSearchInput" type="search" placeholder="Try Pulsatilla, grief, burns, fever, repertory">
+          <div class="d-grid gap-2 mt-3" id="globalSearchResults"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 start-0 p-3" id="tipToasts" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const TRACKED_MODULES = ["module-1", "module-2", "module-3", "module-4", "module-5", "module-6", "module-7"];
+
+    const polychrests = [
+      {
+        name: "Sulphur",
+        latin: "Sulfur",
+        source: "Mineral",
+        profile: "Lean or overweight, philosophical, untidy, the classic ragged philosopher type.",
+        keynote: "Burning sensations everywhere; heat aggravates; averse to bathing.",
+        symptoms: ["Skin diseases with intense itching and burning", "Heat of top of head", "11am hunger", "Redness of all orifices", "Hot feet at night, kicks off covers"],
+        modalities: "Worse heat, bathing, 11am. Better cool open air.",
+        uses: "Eczema, psoriasis, chronic skin disease, constipation, clearing when a well-chosen remedy fails.",
+        differentiation: "Compare Psorinum: dirtiness and despair are deeper, chillier, and more hopeless."
+      },
+      {
+        name: "Lycopodium",
+        latin: "Lycopodium Clavatum",
+        source: "Plant",
+        profile: "Intellectually keen but physically weak; lacks confidence though may appear confident; right-sided.",
+        keynote: "Bloating and flatulence after eating even a little; 4-8 PM aggravation.",
+        symptoms: ["Craves sweets", "Right-sided symptoms or right-to-left movement", "Anticipatory anxiety", "Bossy at home, timid outside", "Deep forehead wrinkles"],
+        modalities: "Worse 4-8 PM, heat, right side. Better warm food, warm drinks, motion.",
+        uses: "Digestive disorders, IBS, liver complaints, urinary infections, right-sided complaints.",
+        differentiation: "Compare Nux Vomica: both digestive, but Nux is more irritable, driven, and stimulant-related."
+      },
+      {
+        name: "Calcarea Carb",
+        latin: "Calcarea Carbonica",
+        source: "Mineral",
+        profile: "Chubby, fair, flabby; cold and damp; slow but thorough.",
+        keynote: "Head sweats at night soaking the pillow; craves eggs.",
+        symptoms: ["Fears disease, insanity, being observed", "Slow development in children", "Cold hands and feet", "Sour discharges", "Chilly"],
+        modalities: "Worse cold, wet, exertion, full moon. Better dry weather, lying on painful side.",
+        uses: "Teething problems, growing pains, anxiety, obesity, hypothyroid tendency, night sweats.",
+        differentiation: "Compare Silica: both chilly and slow, but Silica is more refined, thin, and perfectionistic."
+      },
+      {
+        name: "Natrum Mur",
+        latin: "Natrum Muriaticum",
+        source: "Mineral",
+        profile: "Reserved, grief-holding, introverted; thin but eats well.",
+        keynote: "Cannot cry in front of others; worse consolation.",
+        symptoms: ["Grief that cannot be expressed", "Craves salt", "Oily skin with dry hairline", "Hammering headaches", "Hates sun", "Geographic tongue"],
+        modalities: "Worse sea air, sun, consolation, 10am. Better open air, cold bathing, fasting.",
+        uses: "Depression, grief, migraines, herpes, skin conditions, eating disorders.",
+        differentiation: "Compare Ignatia: acute grief is changeable and contradictory; Natrum Mur is closed, chronic, and contained."
+      },
+      {
+        name: "Pulsatilla",
+        latin: "Pulsatilla Pratensis",
+        source: "Plant",
+        profile: "Gentle, mild, yielding, weepy, and changeable.",
+        keynote: "Symptoms constantly change; craves open air; thirstless even with fever.",
+        symptoms: ["Weeps easily", "Seeks comfort", "Wandering pains", "Thick yellow-green bland discharges", "Worse warm room", "Better open air"],
+        modalities: "Worse warmth, rich food, evenings. Better open air, cold applications, gentle motion, consolation.",
+        uses: "Colds with yellow-green discharge, ear infections, hormonal irregularities, PMS, childhood complaints.",
+        differentiation: "Compare Natrum Mur: both may grieve, but Pulsatilla seeks consolation while Natrum Mur rejects it."
+      },
+      {
+        name: "Nux Vomica",
+        latin: "Strychnos Nux-vomica",
+        source: "Plant",
+        profile: "Ambitious, driven, irritable, Type-A, overworked and overindulgent.",
+        keynote: "Oversensitive to light, noise, smell, criticism; wakes 3am with mental activity.",
+        symptoms: ["Digestive complaints from overindulgence", "Constipation with constant urge", "Chilly", "Irritable mornings", "Worse coffee, alcohol, spices"],
+        modalities: "Worse early morning, cold, stimulants, overwork. Better warmth, rest, evening.",
+        uses: "Hangover, IBS, constipation, insomnia, office stress, digestive upset from overeating.",
+        differentiation: "Compare Arsenicum: both anxious and chilly, but Arsenicum is more fearful, restless, and fastidious."
+      },
+      {
+        name: "Arsenicum",
+        latin: "Arsenicum Album",
+        source: "Mineral",
+        profile: "Fastidious, anxious about health, perfectionist, restless, fears death and disease.",
+        keynote: "Restlessness with exhaustion; midnight to 2am aggravation; burning pains better by heat.",
+        symptoms: ["Great anxiety and restlessness", "Burning relieved by heat", "Very chilly", "Cannot bear disorder", "Sips water", "Prostration out of proportion"],
+        modalities: "Worse midnight-2am, cold, cold food. Better warmth, hot drinks, company.",
+        uses: "Food poisoning, anxiety, asthma worse midnight, flu with restlessness, burning skin eruptions.",
+        differentiation: "Compare Nux Vomica: Nux is irritable and driven; Arsenicum is fearful, meticulous, and exhausted."
+      },
+      {
+        name: "Phosphorus",
+        latin: "Phosphorus",
+        source: "Mineral",
+        profile: "Tall, lean, artistic, affectionate, extroverted, bright, craves company.",
+        keynote: "Craves cold drinks, vomited when warm in stomach; fears alone, dark, thunderstorms.",
+        symptoms: ["Burning pains", "Bleeds easily, bright red blood", "Great affection", "Fears dark and ghosts", "Craves salt, spice, cold drinks"],
+        modalities: "Worse evenings, lying left side, cold air, alone. Better cold food/drinks, company, massage, sleep.",
+        uses: "Bronchitis, coughs, nosebleeds, anxiety, liver complaints, haemorrhage.",
+        differentiation: "Compare Pulsatilla: both affectionate, but Phosphorus is thirstier, brighter, and more open."
+      },
+      {
+        name: "Ignatia",
+        latin: "Ignatia Amara",
+        source: "Plant",
+        profile: "Sensitive, idealistic, romantic; grief or disappointment leads to physical symptoms.",
+        keynote: "Contradictory symptoms; lump in throat better swallowing solids; involuntary sighing.",
+        symptoms: ["Grief and disappointment", "Lump in throat", "Involuntary sighing", "Contradictory symptoms", "Cramping pains", "Suppressed weeping"],
+        modalities: "Worse grief, consolation, tobacco, coffee. Better change of position, eating, urinating.",
+        uses: "Acute grief, bereavement, performance anxiety, IBS from emotions, hysterical conditions.",
+        differentiation: "Compare Natrum Mur: Ignatia is acute, variable, and paradoxical; Natrum Mur is chronic and reserved."
+      },
+      {
+        name: "Sepia",
+        latin: "Sepia Officinalis",
+        source: "Animal",
+        profile: "Worn-out, indifferent to loved ones, sarcastic, wants solitude.",
+        keynote: "Bearing-down sensation as if pelvic organs will prolapse; better vigorous exercise.",
+        symptoms: ["Indifference to family", "Sadness and irritability", "Hot flushes", "Yellow saddle across nose", "Aversion to sex", "Pelvic bearing-down"],
+        modalities: "Worse cold, before periods, morning, consolation. Better vigorous exercise, warmth, fasting.",
+        uses: "PMS, menopause, post-partum depression, prolapse, thyroid issues, indifference states.",
+        differentiation: "Compare Pulsatilla: both hormonal, but Sepia wants distance while Pulsatilla wants comfort."
+      }
+    ];
+
+    const homeKitRemedies = [
+      ["Arnica", "Arnica Montana", "Plant", ["Bruises", "Shock after injury", "Muscle soreness"]],
+      ["Aconite", "Aconitum Napellus", "Plant", ["Sudden fever", "Fright", "Panic after shock"]],
+      ["Belladonna", "Atropa Belladonna", "Plant", ["High fever", "Throbbing pain", "Sudden inflammation"]],
+      ["Apis", "Apis Mellifica", "Animal", ["Bee stings", "Puffy swelling", "Better cold applications"]],
+      ["Arsenicum", "Arsenicum Album", "Mineral", ["Food poisoning", "Restlessness", "Burning better heat"]],
+      ["Bryonia", "Bryonia Alba", "Plant", ["Dry cough", "Stitching pain", "Worse motion"]],
+      ["Calcarea Carb", "Calcarea Carbonica", "Mineral", ["Slow development", "Head sweats", "Chilly constitution"]],
+      ["Calendula", "Calendula Officinalis", "Plant", ["Cuts", "Wounds", "Skin healing"]],
+      ["Cantharis", "Cantharis Vesicatoria", "Animal", ["Burns", "Burning urination", "Blistering pain"]],
+      ["Carbo Veg", "Carbo Vegetabilis", "Plant", ["Bloating", "Belching", "Collapse with coldness"]],
+      ["Chamomilla", "Matricaria Chamomilla", "Plant", ["Teething", "Unbearable pain", "One cheek red"]],
+      ["China", "Cinchona Officinalis", "Plant", ["Weakness after fluid loss", "Gas", "Intermittent fever"]],
+      ["Colocynthis", "Citrullus Colocynthis", "Plant", ["Colic", "Cramping", "Better pressure"]],
+      ["Drosera", "Drosera Rotundifolia", "Plant", ["Spasmodic cough", "Whooping cough pattern", "Night cough"]],
+      ["Euphrasia", "Euphrasia Officinalis", "Plant", ["Watery eyes", "Hay fever", "Bland nasal discharge"]],
+      ["Ferrum Phos", "Ferrum Phosphoricum", "Mineral", ["Early fever", "Inflammation onset", "Mild anemia tendency"]],
+      ["Gelsemium", "Gelsemium Sempervirens", "Plant", ["Flu weakness", "Trembling", "Anticipatory anxiety"]],
+      ["Hepar Sulph", "Hepar Sulphuris Calcareum", "Mineral", ["Suppuration", "Splinter-like pain", "Chilly sensitivity"]],
+      ["Hypericum", "Hypericum Perforatum", "Plant", ["Nerve injuries", "Punctures", "Shooting pain"]],
+      ["Ignatia", "Ignatia Amara", "Plant", ["Acute grief", "Sighing", "Lump in throat"]],
+      ["Ipecac", "Carapichea Ipecacuanha", "Plant", ["Persistent nausea", "Vomiting", "Rattling cough"]],
+      ["Kali Bich", "Kali Bichromicum", "Mineral", ["Stringy mucus", "Sinus congestion", "Yellow-green discharge"]],
+      ["Ledum", "Ledum Palustre", "Plant", ["Puncture wounds", "Insect bites", "Better cold"]],
+      ["Lycopodium", "Lycopodium Clavatum", "Plant", ["Bloating", "4-8 PM worse", "Right-sided complaints"]],
+      ["Mag Phos", "Magnesium Phosphoricum", "Mineral", ["Cramps", "Neuralgia", "Better warmth and pressure"]],
+      ["Mercurius", "Mercurius Solubilis", "Mineral", ["Mouth ulcers", "Sweating", "Offensive discharges"]],
+      ["Natrum Mur", "Natrum Muriaticum", "Mineral", ["Silent grief", "Salt craving", "Sun headaches"]],
+      ["Nux Vomica", "Strychnos Nux-vomica", "Plant", ["Overeating", "Hangover", "Irritable constipation"]],
+      ["Pulsatilla", "Pulsatilla Pratensis", "Plant", ["Thirstless fever", "Yellow-green discharge", "Weepy changeable state"]],
+      ["Rhus Tox", "Toxicodendron Radicans", "Plant", ["Sprains", "Stiffness", "Better continued motion"]],
+      ["Ruta Grav", "Ruta Graveolens", "Plant", ["Tendon strain", "Ligament injury", "Eye strain"]],
+      ["Sepia", "Sepia Officinalis", "Animal", ["PMS", "Indifference", "Better vigorous exercise"]],
+      ["Silica", "Silicea", "Mineral", ["Splinters", "Suppuration", "Chilly weakness"]],
+      ["Sulphur", "Sulfur", "Mineral", ["Itchy burning skin", "Heat aggravation", "Chronic skin tendency"]],
+      ["Thuja", "Thuja Occidentalis", "Plant", ["Warts", "Fixed ideas", "Sycosis background"]]
+    ];
+
+    const moduleSearchItems = [
+      ["History & Origins", "Hahnemann cinchona Organon Kent Hering Boericke Vithoulkas timeline", "#module-1"],
+      ["Core Principles", "Law of Similars vital force infinitesimals Hering proving Organon", "#module-2"],
+      ["Potencies & Preparations", "X C LM 30C 200C 1M dilution succussion calculator", "#module-3"],
+      ["Materia Medica", "polychrests keynotes modalities first aid remedies Sulphur Lycopodium Pulsatilla", "#module-4"],
+      ["Repertory", "Kent rubrics repertorization remedy grading Pulsatilla demo", "#module-5"],
+      ["Case Taking", "location sensation modality concomitant PQRS mental generals", "#module-6"],
+      ["Miasms", "Psora Sycosis Syphilinum Tubercular nosodes chronic disease", "#module-7"],
+      ["Home Kit", "35 remedies dosage rules emergency red flags storage resources", "#module-8"]
+    ];
+
+    let activeCharts = [];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      applyStoredTheme();
+      renderPolychrests();
+      renderHomeKit(homeKitRemedies);
+      initializeComponentFallbacks();
+      initializeProgress();
+      initializeQuiz();
+      initializePotencyCalculator();
+      initializeFirstAidFilter();
+      initializeRepertoryDemo();
+      initializeCaseForm();
+      initializeDecisionTree();
+      initializeSearch();
+      initializeReferenceButton();
+      initializeBackToTop();
+      initializeRevealAnimations();
+      initializeStudyTips();
+      initializeCharts();
+    });
+
+    function getThemeColors() {
+      const styles = getComputedStyle(document.documentElement);
+      return {
+        text: styles.getPropertyValue("--text").trim(),
+        muted: styles.getPropertyValue("--muted").trim(),
+        line: styles.getPropertyValue("--line").trim(),
+        primary: styles.getPropertyValue("--primary").trim(),
+        secondary: styles.getPropertyValue("--secondary").trim(),
+        accent: styles.getPropertyValue("--accent").trim(),
+        danger: styles.getPropertyValue("--danger").trim()
+      };
+    }
+
+    function applyStoredTheme() {
+      const storedTheme = localStorage.getItem("homeopathy-theme") || "light";
+      document.documentElement.setAttribute("data-theme", storedTheme);
+      updateThemeButton(storedTheme);
+      document.getElementById("themeToggle").addEventListener("click", () => {
+        const nextTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", nextTheme);
+        localStorage.setItem("homeopathy-theme", nextTheme);
+        updateThemeButton(nextTheme);
+        refreshChartTheme();
+      });
+    }
+
+    function updateThemeButton(theme) {
+      const button = document.getElementById("themeToggle");
+      const icon = button.querySelector("i");
+      const label = button.querySelector("span");
+      icon.className = theme === "dark" ? "fa-solid fa-sun me-1" : "fa-solid fa-moon me-1";
+      label.textContent = theme === "dark" ? "Light" : "Dark";
+    }
+
+    function initializeProgress() {
+      document.querySelectorAll(".complete-module").forEach((button) => {
+        button.addEventListener("click", () => {
+          const completed = new Set(getCompletedModules());
+          const moduleId = button.dataset.module;
+          completed.has(moduleId) ? completed.delete(moduleId) : completed.add(moduleId);
+          localStorage.setItem("homeopathy-progress", JSON.stringify([...completed]));
+          updateProgressUI();
+        });
+      });
+      updateProgressUI();
+    }
+
+    function getCompletedModules() {
+      try {
+        return JSON.parse(localStorage.getItem("homeopathy-progress")) || [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function updateProgressUI() {
+      const completed = getCompletedModules().filter((moduleId) => TRACKED_MODULES.includes(moduleId));
+      const total = TRACKED_MODULES.length;
+      const percent = Math.round((completed.length / total) * 100);
+      document.getElementById("progressBadge").textContent = `${completed.length}/${total} modules complete`;
+      document.getElementById("heroProgressBar").style.width = `${percent}%`;
+      document.getElementById("heroProgressText").textContent = `${percent}% complete`;
+      document.querySelector(".hero-progress").setAttribute("aria-valuenow", String(percent));
+      document.querySelectorAll(".complete-module").forEach((button) => {
+        const isComplete = completed.includes(button.dataset.module);
+        button.classList.toggle("completed", isComplete);
+        button.innerHTML = isComplete
+          ? '<i class="fa-solid fa-circle-check me-2" aria-hidden="true"></i>Completed'
+          : '<i class="fa-regular fa-circle-check me-2" aria-hidden="true"></i>Mark Module Complete';
+      });
+    }
+
+    function initializeQuiz() {
+      const answers = { q1: "Samuel Hahnemann", q2: "1810", q3: "Cinchona bark" };
+      document.getElementById("historyQuiz").addEventListener("submit", (event) => {
+        event.preventDefault();
+        let score = 0;
+        Object.entries(answers).forEach(([name, answer]) => {
+          const checked = document.querySelector(`input[name="${name}"]:checked`);
+          if (checked && checked.value === answer) score += 1;
+        });
+        document.getElementById("historyQuizResult").textContent = `You scored ${score}/3. ${score === 3 ? "Excellent recall." : "Review the timeline and try again."}`;
+      });
+    }
+
+    function initializePotencyCalculator() {
+      const result = document.getElementById("potencyResult");
+      const calculate = () => {
+        const count = Number(document.getElementById("dilutionCount").value || 1);
+        const scale = document.getElementById("scaleSelect").value;
+        const base = scale === "X" ? 10 : scale === "C" ? 100 : 50000;
+        const exponent = scale === "X" ? count : scale === "C" ? count * 2 : Math.round(Math.log10(base) * count * 10) / 10;
+        const potencyName = `${count}${scale}`;
+        const useCase = count <= 12 && scale !== "LM"
+          ? "Low potency range: often used for local symptoms, tissue salts, and more frequent repetition."
+          : count === 30 && scale === "C"
+            ? "30C: common home-use acute potency when the picture is clear."
+            : count >= 200 && scale === "C"
+              ? "High potency range: best reserved for clear pictures and trained guidance."
+              : "Specialized scale: usually used with careful individualized prescribing.";
+        result.textContent = `${potencyName}\nTotal dilution: 1 in ${base}^${count} (about 10^${exponent}).\nSuggested use frame: ${useCase}`;
+      };
+      document.getElementById("calculatePotency").addEventListener("click", calculate);
+      calculate();
+    }
+
+    function renderPolychrests() {
+      const tabs = document.getElementById("polychrestTabs");
+      const content = document.getElementById("polychrestContent");
+      tabs.innerHTML = "";
+      content.innerHTML = "";
+      polychrests.forEach((remedy, index) => {
+        const slug = remedy.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+        const tab = document.createElement("li");
+        tab.className = "nav-item";
+        tab.setAttribute("role", "presentation");
+        tab.innerHTML = `<button class="nav-link ${index === 0 ? "active" : ""}" id="${slug}-tab" data-bs-toggle="tab" data-bs-target="#${slug}-pane" type="button" role="tab">${remedy.name}</button>`;
+        tabs.appendChild(tab);
+
+        const pane = document.createElement("div");
+        pane.className = `tab-pane fade ${index === 0 ? "show active" : ""}`;
+        pane.id = `${slug}-pane`;
+        pane.setAttribute("role", "tabpanel");
+        pane.setAttribute("aria-labelledby", `${slug}-tab`);
+        pane.innerHTML = `
+          <article class="repertory-rubric" role="article">
+            <div class="d-flex flex-wrap gap-2 align-items-center mb-2">
+              <h4 class="h5 mb-0">${remedy.name}</h4>
+              <span class="pill">${remedy.latin}</span>
+              <span class="pill">${remedy.source}</span>
+            </div>
+            <p><strong>Constitutional profile:</strong> ${remedy.profile}</p>
+            <p><strong>Keynote:</strong> ${remedy.keynote}</p>
+            <ul>${remedy.symptoms.map((symptom) => `<li>${symptom}</li>`).join("")}</ul>
+            <p><strong>Modalities:</strong> ${remedy.modalities}</p>
+            <p><strong>Common uses:</strong> ${remedy.uses}</p>
+            <p class="mb-0"><strong>Differentiation:</strong> ${remedy.differentiation}</p>
+          </article>
+        `;
+        content.appendChild(pane);
+      });
+    }
+
+    function initializeFirstAidFilter() {
+      const input = document.getElementById("firstAidFilter");
+      input.addEventListener("input", () => {
+        const query = input.value.trim().toLowerCase();
+        document.querySelectorAll("#firstAidTable tbody tr").forEach((row) => {
+          row.style.display = row.textContent.toLowerCase().includes(query) ? "" : "none";
+        });
+      });
+    }
+
+    function initializeRepertoryDemo() {
+      const data = {
+        thirstless: ["Pulsatilla", "Gelsemium", "Apis"],
+        changeable: ["Pulsatilla", "Nux Vomica", "Ignatia"],
+        openAir: ["Pulsatilla", "Sulphur", "Natrum Mur"],
+        weeping: ["Pulsatilla", "Ignatia", "Natrum Mur"]
+      };
+      const labels = {
+        thirstless: "Thirstless",
+        changeable: "Changeable symptoms",
+        openAir: "Better open air",
+        weeping: "Weeping tendency"
+      };
+      const active = new Set();
+      const output = document.getElementById("repertoryResult");
+
+      document.querySelectorAll("#rubricButtons button").forEach((button) => {
+        button.addEventListener("click", () => {
+          const rubric = button.dataset.rubric;
+          active.has(rubric) ? active.delete(rubric) : active.add(rubric);
+          button.classList.toggle("btn-primary-academy", active.has(rubric));
+          button.classList.toggle("btn-outline-academy", !active.has(rubric));
+          const tally = {};
+          active.forEach((key) => data[key].forEach((remedy) => {
+            tally[remedy] = (tally[remedy] || 0) + 1;
+          }));
+          const sorted = Object.entries(tally).sort((a, b) => b[1] - a[1]);
+          if (!sorted.length) {
+            output.textContent = "Select rubrics to see remedy overlap.";
+            return;
+          }
+          const chosen = [...active].map((key) => labels[key]).join(", ");
+          output.textContent = `Selected rubrics: ${chosen}\n\nRemedy tally:\n${sorted.map(([remedy, count]) => `${remedy}: ${count}`).join("\n")}\n\n${sorted[0][0]} emerges as the leading candidate, then needs Materia Medica confirmation.`;
+        });
+      });
+    }
+
+    function initializeCaseForm() {
+      document.getElementById("caseForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const locations = [...document.querySelectorAll('input[name="location"]:checked')].map((input) => input.value).join(", ") || "Not specified";
+        const summary = [
+          "STRUCTURED CASE SUMMARY",
+          `Chief complaint: ${valueOf("chiefComplaint")}`,
+          `Onset: ${valueOf("onset")}`,
+          `Location: ${locations}`,
+          `Sensation: ${valueOf("sensation")}`,
+          `Better from: ${valueOf("better")}`,
+          `Worse from: ${valueOf("worse")}`,
+          `Concomitants: ${valueOf("concomitants")}`,
+          `Mental state: ${valueOf("mentalState")}`,
+          `Generals: ${valueOf("generals")}`,
+          "",
+          "Next step: identify PQRS features, convert symptoms into repertory rubrics, then confirm candidate remedies in Materia Medica."
+        ].join("\n");
+        document.getElementById("caseSummary").textContent = summary;
+      });
+    }
+
+    function valueOf(id) {
+      return document.getElementById(id).value.trim() || "Not specified";
+    }
+
+    function renderHomeKit(remedies) {
+      const grid = document.getElementById("homeKitGrid");
+      grid.innerHTML = remedies.map(([abbr, full, source, uses]) => `
+        <div class="col-md-6 col-xl-4 home-kit-item" data-search="${[abbr, full, source, ...uses].join(" ").toLowerCase()}">
+          <article class="card h-100" role="article">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between gap-2">
+                <div>
+                  <h4 class="h5 mb-1">${abbr}</h4>
+                  <div class="small-muted">${full}</div>
+                </div>
+                <span class="pill">${source}</span>
+              </div>
+              <ul class="mt-3 mb-3">${uses.map((use) => `<li>${use}</li>`).join("")}</ul>
+              <span class="pill">30C acute home-use</span>
+            </div>
+          </article>
+        </div>
+      `).join("");
+      document.getElementById("homeKitFilter").addEventListener("input", (event) => {
+        const query = event.target.value.trim().toLowerCase();
+        document.querySelectorAll(".home-kit-item").forEach((item) => {
+          item.style.display = item.dataset.search.includes(query) ? "" : "none";
+        });
+      });
+    }
+
+    function initializeDecisionTree() {
+      const tree = {
+        start: { text: "Is the condition acute or chronic?", options: [["Acute", "acute"], ["Chronic", "chronic"]] },
+        acute: { text: "How severe is the acute condition?", options: [["Mild", "mild"], ["Moderate", "moderate"], ["Severe or quick onset", "severe"]] },
+        chronic: { text: "Have you already used 30C with a clear remedy picture?", options: [["No", "start30"], ["Yes", "homeopath"]] },
+        mild: { text: "Typical starting point: 6C. Repeat gently and stop when better.", options: [["Start over", "start"]] },
+        moderate: { text: "Typical starting point: 30C. This is the common acute home-use potency.", options: [["Start over", "start"]] },
+        severe: { text: "200C is sometimes used for intense acute states, but urgent symptoms still need medical care.", options: [["Start over", "start"]] },
+        start30: { text: "Start with 30C only when the symptom picture is clear. Track response and stop when better.", options: [["Start over", "start"]] },
+        homeopath: { text: "For chronic patterns or repeated failed acute prescribing, see a qualified homeopath and medical professional as needed.", options: [["Start over", "start"]] }
+      };
+      const output = document.getElementById("decisionTree");
+      const buttons = document.getElementById("decisionTreeButtons");
+      const render = (nodeId) => {
+        const node = tree[nodeId];
+        output.textContent = node.text;
+        buttons.innerHTML = node.options.map(([label, target]) => `<button class="btn btn-outline-academy" type="button" data-target="${target}">${label}</button>`).join("");
+        buttons.querySelectorAll("button").forEach((button) => button.addEventListener("click", () => render(button.dataset.target)));
+      };
+      render("start");
+    }
+
+    function initializeReferenceButton() {
+      const button = document.getElementById("referenceReviewed");
+      const update = () => {
+        const reviewed = localStorage.getItem("homeopathy-reference-reviewed") === "true";
+        button.classList.toggle("completed", reviewed);
+        button.classList.toggle("btn-primary-academy", reviewed);
+        button.classList.toggle("btn-outline-academy", !reviewed);
+        button.innerHTML = reviewed
+          ? '<i class="fa-solid fa-bookmark me-2" aria-hidden="true"></i>Reference Reviewed'
+          : '<i class="fa-regular fa-bookmark me-2" aria-hidden="true"></i>Mark Reference Reviewed';
+      };
+      button.addEventListener("click", () => {
+        const reviewed = localStorage.getItem("homeopathy-reference-reviewed") === "true";
+        localStorage.setItem("homeopathy-reference-reviewed", String(!reviewed));
+        update();
+      });
+      update();
+    }
+
+    function initializeComponentFallbacks() {
+      if (window.bootstrap) return;
+
+      document.querySelectorAll('[data-bs-toggle="tab"]').forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.preventDefault();
+          const target = document.querySelector(button.dataset.bsTarget);
+          const tabList = button.closest('[role="tablist"]');
+          const tabContent = target?.parentElement;
+          if (!target || !tabList || !tabContent) return;
+          tabList.querySelectorAll(".nav-link").forEach((item) => {
+            item.classList.remove("active");
+            item.setAttribute("aria-selected", "false");
+          });
+          tabContent.querySelectorAll(".tab-pane").forEach((pane) => pane.classList.remove("show", "active"));
+          button.classList.add("active");
+          button.setAttribute("aria-selected", "true");
+          target.classList.add("show", "active");
+        });
+      });
+
+      document.querySelectorAll('[data-bs-toggle="collapse"]').forEach((button) => {
+        button.addEventListener("click", () => {
+          const target = document.querySelector(button.dataset.bsTarget);
+          if (!target) return;
+          const parentSelector = target.dataset.bsParent;
+          if (parentSelector) {
+            document.querySelectorAll(`${parentSelector} .accordion-collapse`).forEach((panel) => {
+              if (panel !== target) panel.classList.remove("show");
+            });
+            document.querySelectorAll(`${parentSelector} .accordion-button`).forEach((item) => {
+              if (item !== button) item.classList.add("collapsed");
+            });
+          }
+          target.classList.toggle("show");
+          button.classList.toggle("collapsed", !target.classList.contains("show"));
+        });
+      });
+
+      const searchButton = document.querySelector('[data-bs-target="#searchModal"]');
+      const searchModal = document.getElementById("searchModal");
+      const closeSearch = () => {
+        searchModal.classList.remove("show");
+        searchModal.setAttribute("aria-hidden", "true");
+      };
+      const openSearch = () => {
+        searchModal.classList.add("show");
+        searchModal.removeAttribute("aria-hidden");
+        document.getElementById("globalSearchInput").focus();
+      };
+      searchButton?.addEventListener("click", openSearch);
+      searchModal.querySelector(".btn-close")?.addEventListener("click", closeSearch);
+      searchModal.addEventListener("click", (event) => {
+        if (event.target === searchModal || event.target.closest("[data-bs-dismiss='modal']")) closeSearch();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && searchModal.classList.contains("show")) closeSearch();
+      });
+    }
+
+    function initializeSearch() {
+      const items = [
+        ...moduleSearchItems.map(([title, text, href]) => ({ title, text, href, type: "Module" })),
+        ...polychrests.map((remedy) => ({ title: remedy.name, text: `${remedy.latin} ${remedy.source} ${remedy.profile} ${remedy.keynote} ${remedy.symptoms.join(" ")} ${remedy.uses}`, href: "#module-4", type: "Polychrest" })),
+        ...homeKitRemedies.map(([abbr, full, source, uses]) => ({ title: `${abbr} (${full})`, text: `${source} ${uses.join(" ")}`, href: "#module-8", type: "Home Kit" })),
+        { title: "Emergency red flags", text: "chest pain breathing difficulty high fever stiff neck sudden severe headache loss consciousness confusion fracture infants worsening", href: "#module-8", type: "Safety" }
+      ];
+      const input = document.getElementById("globalSearchInput");
+      const results = document.getElementById("globalSearchResults");
+      const renderResults = () => {
+        const query = input.value.trim().toLowerCase();
+        if (!query) {
+          results.innerHTML = '<div class="small-muted">Enter a search term to find matching remedies, conditions, symptoms, and sections.</div>';
+          return;
+        }
+        const matches = items.filter((item) => `${item.title} ${item.text}`.toLowerCase().includes(query)).slice(0, 12);
+        results.innerHTML = matches.length
+          ? matches.map((item) => `<a class="search-result" href="${item.href}" data-bs-dismiss="modal"><span class="pill">${item.type}</span><strong class="d-block mt-2">${item.title}</strong><span class="small-muted">${item.text.slice(0, 150)}...</span></a>`).join("")
+          : '<div class="small-muted">No matches found. Try a remedy name, condition, or symptom.</div>';
+      };
+      input.addEventListener("input", renderResults);
+      document.getElementById("searchModal").addEventListener("shown.bs.modal", () => {
+        input.focus();
+        renderResults();
+      });
+    }
+
+    function initializeBackToTop() {
+      const button = document.getElementById("backToTop");
+      window.addEventListener("scroll", () => {
+        button.classList.toggle("show", window.scrollY > 400);
+      }, { passive: true });
+      button.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    }
+
+    function initializeRevealAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach((element, index) => {
+        element.style.transitionDelay = `${Math.min(index % 5, 4) * 70}ms`;
+        observer.observe(element);
+      });
+    }
+
+    function initializeStudyTips() {
+      const tips = {
+        "module-2": "Tip: Read Organon §26 for the full Law of Similars explanation.",
+        "module-4": "Tip: Print the polychrest table as a quick reference card.",
+        "module-5": "Tip: Practice repertorizing at oorep.com."
+      };
+      const shown = new Set(JSON.parse(localStorage.getItem("homeopathy-shown-tips") || "[]"));
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !shown.has(entry.target.id)) {
+            shown.add(entry.target.id);
+            localStorage.setItem("homeopathy-shown-tips", JSON.stringify([...shown]));
+            showTip(tips[entry.target.id]);
+          }
+        });
+      }, { threshold: 0.55 });
+      Object.keys(tips).forEach((id) => observer.observe(document.getElementById(id)));
+    }
+
+    function showTip(message) {
+      const container = document.getElementById("tipToasts");
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.setAttribute("role", "status");
+      toast.setAttribute("aria-live", "polite");
+      toast.innerHTML = `<div class="toast-header"><strong class="me-auto">Study Tip</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button></div><div class="toast-body">${message}</div>`;
+      container.appendChild(toast);
+      if (window.bootstrap?.Toast) {
+        const instance = bootstrap.Toast.getOrCreateInstance(toast, { delay: 6000 });
+        instance.show();
+        toast.addEventListener("hidden.bs.toast", () => toast.remove());
+      } else {
+        toast.classList.add("show");
+        window.setTimeout(() => toast.remove(), 6000);
+      }
+    }
+
+    function initializeCharts() {
+      if (!window.Chart) return;
+      const colors = getThemeColors();
+      const common = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: colors.text, font: { family: "Inter" } } }
+        },
+        scales: {
+          x: { ticks: { color: colors.text }, grid: { color: colors.line } },
+          y: { ticks: { color: colors.text }, grid: { color: colors.line } }
+        }
+      };
+
+      activeCharts.push(new Chart(document.getElementById("potencyChart"), {
+        type: "bar",
+        data: {
+          labels: ["6X", "12X", "6C", "30C", "200C", "LM1", "LM3"],
+          datasets: [{
+            label: "Total dilution factor",
+            data: [1e6, 1e12, 1e12, 1e60, 1e300, 5e4, 1.25e14],
+            backgroundColor: [colors.primary, colors.primary, colors.secondary, colors.secondary, colors.accent, colors.danger, colors.danger]
+          }]
+        },
+        options: {
+          ...common,
+          scales: {
+            x: common.scales.x,
+            y: {
+              type: "logarithmic",
+              min: 10000,
+              max: 1e300,
+              ticks: {
+                color: colors.text,
+                callback: (value) => `10^${Math.round(Math.log10(value))}`
+              },
+              grid: { color: colors.line }
+            }
+          }
+        }
+      }));
+
+      activeCharts.push(new Chart(document.getElementById("polychrestChart"), {
+        type: "bar",
+        data: {
+          labels: polychrests.map((item) => item.name),
+          datasets: [{
+            label: "Study breadth score",
+            data: [96, 91, 88, 83, 79, 87, 84, 76, 72, 80],
+            backgroundColor: colors.primary
+          }]
+        },
+        options: {
+          ...common,
+          indexAxis: "y",
+          scales: {
+            x: { ...common.scales.x, suggestedMax: 100 },
+            y: common.scales.y
+          }
+        }
+      }));
+
+      activeCharts.push(new Chart(document.getElementById("miasmChart"), {
+        type: "radar",
+        data: {
+          labels: ["Skin expression", "Mental theme", "Discharge type", "Thermal state", "Structural tendency"],
+          datasets: [
+            { label: "Psora", data: [9, 6, 4, 6, 3], borderColor: colors.primary, backgroundColor: "rgba(46, 125, 91, 0.18)" },
+            { label: "Sycosis", data: [6, 8, 9, 5, 8], borderColor: colors.secondary, backgroundColor: "rgba(123, 94, 167, 0.18)" },
+            { label: "Syphilinum", data: [5, 9, 6, 4, 10], borderColor: colors.danger, backgroundColor: "rgba(192, 57, 43, 0.16)" }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { labels: { color: colors.text } } },
+          scales: {
+            r: {
+              angleLines: { color: colors.line },
+              grid: { color: colors.line },
+              pointLabels: { color: colors.text },
+              ticks: { color: colors.muted, backdropColor: "transparent" },
+              suggestedMin: 0,
+              suggestedMax: 10
+            }
+          }
+        }
+      }));
+
+      const sourceCounts = homeKitRemedies.reduce((counts, remedy) => {
+        counts[remedy[2]] = (counts[remedy[2]] || 0) + 1;
+        return counts;
+      }, {});
+      activeCharts.push(new Chart(document.getElementById("kitChart"), {
+        type: "doughnut",
+        data: {
+          labels: Object.keys(sourceCounts),
+          datasets: [{
+            data: Object.values(sourceCounts),
+            backgroundColor: [colors.primary, colors.secondary, colors.accent],
+            borderColor: colors.line
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: "bottom", labels: { color: colors.text } } }
+        }
+      }));
+    }
+
+    function refreshChartTheme() {
+      if (!activeCharts.length) return;
+      const colors = getThemeColors();
+      activeCharts.forEach((chart) => {
+        if (chart.options.plugins?.legend?.labels) chart.options.plugins.legend.labels.color = colors.text;
+        if (chart.options.scales) {
+          Object.values(chart.options.scales).forEach((scale) => {
+            if (scale.ticks) scale.ticks.color = colors.text;
+            if (scale.grid) scale.grid.color = colors.line;
+            if (scale.pointLabels) scale.pointLabels.color = colors.text;
+            if (scale.angleLines) scale.angleLines.color = colors.line;
+          });
+        }
+        chart.update();
+      });
+    }
+  </script>
+</body>
+</html>
